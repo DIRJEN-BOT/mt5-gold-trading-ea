@@ -332,7 +332,7 @@ footer .risk{max-width:640px;margin:0 auto 16px;font-size:12px;color:var(--muted
 // ========== PARTICLE SYSTEM ==========
 const c=document.getElementById('particles'),ctx=c.getContext('2d');
 let w,h,particles=[];
-function resize(){w=c.width=innerWidth;h=c.height=innerHeight;resize();}
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight;}
 resize(); window.addEventListener('resize',resize);
 for(let i=0;i<80;i++)particles.push({x:Math.random()*w,y:Math.random()*h,dx:(Math.random()-.5)*.6,dy:(Math.random()-.5)*.6,sz:Math.random()*2+1,o:Math.random()*.5+.1});
 function animateParticles(){
