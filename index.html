@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vilona Gold Trading EA — Free MT5 Expert Advisor for XAUUSD</title>
+<meta name="description" content="Download free MT5 gold trading EA for XAUUSD. Verified backtest with equity chart. Pro EA with PF 1.99, +$35,729 available. Contact @codergaboets.">
+<meta name="keywords" content="MT5 EA, gold trading EA, XAUUSD trading bot, free MT5 expert advisor, MetaTrader 5 gold, forex EA">
+<meta property="og:image" content="https://DIRJEN-BOT.github.io/mt5-gold-trading-ea/social-preview.png">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0e14; color: #e6e9ef; line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* NAV */
+nav { padding: 20px 0; border-bottom: 1px solid #1a2530; }
+nav .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 20px; font-weight: 700; color: #4fc3f7; }
+.logo span { color: #f6823b; }
+nav a { color: #7e93a8; text-decoration: none; margin-left: 24px; font-size: 14px; transition: color .2s; }
+nav a:hover { color: #4fc3f7; }
+
+/* HERO */
+.hero { padding: 80px 0 60px; text-align: center; }
+.hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 16px; }
+.hero h1 span { color: #4fc3f7; }
+.hero .subtitle { font-size: 18px; color: #7e93a8; max-width: 700px; margin: 0 auto 32px; }
+.hero .cta { display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #f6823b, #e85d2c); color: #fff; font-size: 18px; font-weight: 700; text-decoration: none; border-radius: 8px; transition: transform .2s, box-shadow .2s; }
+.hero .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(246,130,59,.3); }
+.hero .badges { margin-top: 24px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.hero .badges span { padding: 6px 16px; background: #16222e; border: 1px solid #2a3a4a; border-radius: 20px; font-size: 13px; color: #7e93a8; }
+
+/* SECTION */
+section { padding: 60px 0; }
+section h2 { font-size: 32px; font-weight: 700; margin-bottom: 16px; text-align: center; }
+section h2 span { color: #f6823b; }
+section .desc { font-size: 16px; color: #7e93a8; max-width: 600px; margin: 0 auto 40px; text-align: center; }
+
+/* FREE EA CARD */
+.card-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+.card { background: #16222e; border: 1px solid #2a3a4a; border-radius: 12px; padding: 28px; transition: border-color .3s; }
+.card:hover { border-color: #4fc3f7; }
+.card h3 { font-size: 18px; margin-bottom: 8px; }
+.card .price { color: #4fc3f7; font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+.card .price .free { color: #4caf50; }
+.card ul { list-style: none; margin-bottom: 20px; }
+.card ul li { padding: 6px 0; font-size: 14px; color: #b0bec5; }
+.card ul li:before { content: "✓ "; color: #4caf50; }
+.card .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: transform .2s; }
+.card .btn-primary { background: #4fc3f7; color: #0a0e14; }
+.card .btn-primary:hover { transform: translateY(-1px); }
+.card .btn-outline { border: 1px solid #4fc3f7; color: #4fc3f7; }
+.card .btn-outline:hover { background: rgba(79,195,247,.1); }
+
+/* METRICS TABLE */
+table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+th { text-align: left; padding: 12px 16px; background: #1b2733; color: #7e93a8; font-size: 13px; text-transform: uppercase; }
+td { padding: 12px 16px; border-bottom: 1px solid #22303e; font-size: 14px; }
+td.pos { color: #4caf50; font-weight: 600; }
+td.neg { color: #ef5350; font-weight: 600; }
+tr:hover { background: #1b2733; }
+
+/* PRO HIGHLIGHT */
+.pro-highlight { background: linear-gradient(135deg, #1a2530 0%, #16222e 50%, #1b2733 100%); border: 2px solid #f6823b; border-radius: 12px; padding: 36px; text-align: center; }
+.pro-highlight h3 { font-size: 24px; margin-bottom: 8px; }
+.pro-highlight .big-num { font-size: 48px; font-weight: 800; color: #4caf50; }
+.pro-highlight .cta { display: inline-block; margin-top: 20px; padding: 14px 36px; background: linear-gradient(135deg, #f6823b, #e85d2c); color: #fff; font-size: 16px; font-weight: 700; text-decoration: none; border-radius: 8px; }
+
+/* CONTACT */
+.contact-section { text-align: center; padding: 60px 0; }
+.contact-section h2 { margin-bottom: 24px; }
+.contact-grid { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+.contact-card { background: #16222e; border: 1px solid #2a3a4a; border-radius: 12px; padding: 24px 32px; text-align: center; min-width: 200px; }
+.contact-card .icon { font-size: 32px; margin-bottom: 8px; }
+.contact-card .label { color: #7e93a8; font-size: 12px; text-transform: uppercase; }
+.contact-card .value { font-size: 16px; font-weight: 600; margin-top: 4px; }
+
+/* FOOTER */
+footer { padding: 40px 0; border-top: 1px solid #1a2530; text-align: center; color: #5b6b7b; font-size: 13px; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 32px; }
+  nav a { margin-left: 12px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="container">
+  <div class="logo">VILONA<span>█</span></div>
+  <div>
+    <a href="#free">Free EA</a>
+    <a href="#pro">Pro</a>
+    <a href="#cosmetic">Cosmetic</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+</nav>
+
+<section class="hero">
+<div class="container">
+  <h1>Trade Gold on <span>MetaTrader 5</span></h1>
+  <p class="subtitle">Free &amp; Pro MT5 Expert Advisors for XAUUSD with verified backtest evidence. Open-source, transparent, honest.</p>
+  <a href="#free" class="cta">↓ Download Free EA</a>
+  <div class="badges">
+    <span>MT5 Expert Advisor</span>
+    <span>XAUUSD Gold</span>
+    <span>Verified Backtest</span>
+    <span>Free + Pro</span>
+  </div>
+</div>
+</section>
+
+<section id="free">
+<div class="container">
+  <h2>Free EA — <span>Vilona Basic Gold</span></h2>
+  <p class="desc">Simple EMA crossover for XAUUSD, M15. Open-source, usable, honest. No secrets, no tricks.</p>
+
+  <div class="card-group">
+    <div class="card">
+      <h3>📥 Download</h3>
+      <p class="price"><span class="free">FREE</span> — open source</p>
+      <ul>
+        <li>EMA 20/50 crossover, M15</li>
+        <li>Long-only, 1% fixed risk</li>
+        <li>SL 3000pts, TP 6000pts</li>
+        <li>Max 1 position at a time</li>
+        <li>Source code included (.mq5)</li>
+      </ul>
+      <a href="free-ea/vilona_basic_gold.zip" class="btn btn-primary" download>⬇ Download Free EA</a>
+    </div>
+    <div class="card">
+      <h3>📊 Performance</h3>
+      <p class="price">Backtest XAUUSD.conv 2024–2026</p>
+      <ul>
+        <li>Net Profit: <span id="free-net">+$XXX</span></li>
+        <li>Profit Factor: <span id="free-pf">X.XX</span></li>
+        <li>Max DD: <span id="free-dd">X.X%</span></li>
+        <li>Total Trades: <span id="free-trades">XXX</span></li>
+        <li>Win Rate: <span id="free-wr">XX%</span></li>
+      </ul>
+      <a href="free-ea/evidences/backtest-report.html" class="btn btn-outline">📄 Full Report</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="pro">
+<div class="container">
+  <h2>Pro EA — <span>True Performance</span></h2>
+  <p class="desc">Our flagship strategies. Verified by real MT5 Strategy Tester reports. Contact for pricing.</p>
+
+  <table>
+    <thead><tr><th>Strategy</th><th>Net Profit</th><th>PF</th><th>Max DD</th><th>Trades</th><th>Type</th></tr></thead>
+    <tbody>
+      <tr><td><b>Vilona_Systematic_v1</b></td><td class="pos">+$35,729</td><td>1.99</td><td>16.2%</td><td>86</td><td>Gold D1 Breakout</td></tr>
+      <tr><td><b>Vilona_HS_v119p</b></td><td class="pos">+$90,259</td><td>2.94</td><td>21.4%</td><td>27</td><td>Gold Trend</td></tr>
+      <tr><td><b>TGDH Portfolio</b></td><td class="pos">~2,700% CAGR</td><td>—</td><td>≤25%</td><td>—</td><td>Gold + Crypto Bot</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pro-highlight">
+    <h3>Vilona_Systematic_v1</h3>
+    <div class="big-num">+$35,729</div>
+    <p style="color:#7e93a8;margin:8px 0">Profit Factor 1.99 · 86 trades · 16.2% max DD · 75.7% CAGR</p>
+    <p style="color:#7e93a8;font-size:14px;margin-bottom:16px">Real MT5 Strategy Tester Report included. Full transaction history. Equity chart.</p>
+    <a href="#contact" class="cta">📩 Contact for Pricing</a>
+  </div>
+</div>
+</section>
+
+<section id="cosmetic">
+<div class="container">
+  <h2>Cosmetic Bundle — <span>Brand HUD + Pet + Sound</span></h2>
+  <p class="desc">Make your charts look like a hedge fund. Premium HUD, pixel-art Prabowo pet, and entry/exit sounds.</p>
+
+  <div class="card-group">
+    <div class="card">
+      <h3>🎨 What's Included</h3>
+      <p class="price">Rp 50.000 / $3</p>
+      <ul>
+        <li>Vilona Brand HUD (equity, balance, margin, signal, sparkline)</li>
+        <li>Prabowo pixel-art pet (sine movement, chat bubbles)</li>
+        <li>Entry/exit sound alerts (WAV)</li>
+        <li>One-click installer (.bat / .sh)</li>
+        <li>Works on ANY chart, any EA</li>
+      </ul>
+      <a href="cosmetic-bundle/vilona-cosmetic-bundle.zip" class="btn btn-primary">⬇ Download Bundle</a>
+    </div>
+    <div class="card">
+      <h3>🖼️ Preview</h3>
+      <img src="cosmetic-bundle/screenshot.png" alt="HUD+Pet Preview" style="width:100%;border-radius:8px;margin-bottom:12px">
+      <p style="color:#7e93a8;font-size:13px">Attach to any chart, enable InpBrandHUDOnly=true, InpPetEnabled=true</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="contact" class="contact-section">
+<div class="container">
+  <h2>Get in Touch</h2>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="icon">💬</div>
+      <div class="label">Telegram</div>
+      <div class="value">@codergaboets</div>
+    </div>
+    <div class="contact-card">
+      <div class="icon">📱</div>
+      <div class="label">WhatsApp</div>
+      <div class="value">+6285732740006</div>
+    </div>
+    <div class="contact-card">
+      <div class="icon">🐙</div>
+      <div class="label">GitHub</div>
+      <div class="value">github.com/DIRJEN-BOT/mt5-gold-trading-ea</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+  <p>⚠️ Trading forex/CFD berisiko tinggi. Backtest ≠ jaminan masa depan. Selalu uji di akun demo sebelum live.</p>
+  <p style="margin-top:8px">© 2026 Vilona Trading Systems</p>
+</div>
+</footer>
+
+</body>
+</html>
