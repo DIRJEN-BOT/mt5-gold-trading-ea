@@ -4,255 +4,419 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vilona Gold Trading EA — Free MT5 Expert Advisor for XAUUSD</title>
-<meta name="description" content="Download free MT5 gold trading EA for XAUUSD. Verified backtest with equity chart. Pro EA with PF 1.99, +$35,729 available. Contact @codergaboets.">
-<meta name="keywords" content="MT5 EA, gold trading EA, XAUUSD trading bot, free MT5 expert advisor, MetaTrader 5 gold, forex EA">
-<meta property="og:image" content="https://DIRJEN-BOT.github.io/mt5-gold-trading-ea/social-preview.png">
+<meta name="description" content="Download free MT5 gold trading EA for XAUUSD. Verified backtest with equity chart. Pro EA with PF 1.99, +$35,729. Contact @codergaboets, WhatsApp +6285732740006.">
+<meta name="keywords" content="MT5 EA, gold trading EA, XAUUSD trading bot, free MT5 expert advisor, MetaTrader 5 gold, forex EA, mql5">
+<meta name="theme-color" content="#07090d">
+<meta property="og:title" content="Vilona Gold Trading EA">
+<meta property="og:description" content="Free MT5 EA + Pro EA with verified backtest (PF 1.99, +$35,729) + Vilona Brand HUD cosmetic bundle.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0e14; color: #e6e9ef; line-height: 1.6; }
-.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+:root{
+  --bg:#07090d; --bg2:#0a0e14; --panel:#111722; --panel2:#0d131c;
+  --border:#1c2634; --border2:#2a3a4a;
+  --txt:#e8edf4; --muted:#8a9bb0; --muted2:#6b7d93;
+  --gold:#f0b429; --orange:#f6823b; --blue:#4fc3f7; --green:#4caf50; --red:#ef5350;
+  --grad1:#4fc3f7; --grad2:#f6823b; --grad3:#f0b429;
+  --radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif}
+a{text-decoration:none;color:inherit}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+.section{padding:110px 0;position:relative}
 
-/* NAV */
-nav { padding: 20px 0; border-bottom: 1px solid #1a2530; }
-nav .container { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-size: 20px; font-weight: 700; color: #4fc3f7; }
-.logo span { color: #f6823b; }
-nav a { color: #7e93a8; text-decoration: none; margin-left: 24px; font-size: 14px; transition: color .2s; }
-nav a:hover { color: #4fc3f7; }
+/* ---- animated background ---- */
+.bg-grid{position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:44px 44px;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 60%,transparent 100%)}
+.bg-blob{position:fixed;border-radius:50%;filter:blur(120px);opacity:.22;z-index:-2;pointer-events:none;transition:transform .2s ease-out}
+.blob1{width:600px;height:600px;background:var(--blue);top:-200px;left:-150px}
+.blob2{width:500px;height:500px;background:var(--orange);top:30%;right:-200px}
+.blob3{width:400px;height:400px;background:var(--gold);bottom:-100px;left:30%}
 
-/* HERO */
-.hero { padding: 80px 0 60px; text-align: center; }
-.hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 16px; }
-.hero h1 span { color: #4fc3f7; }
-.hero .subtitle { font-size: 18px; color: #7e93a8; max-width: 700px; margin: 0 auto 32px; }
-.hero .cta { display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #f6823b, #e85d2c); color: #fff; font-size: 18px; font-weight: 700; text-decoration: none; border-radius: 8px; transition: transform .2s, box-shadow .2s; }
-.hero .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(246,130,59,.3); }
-.hero .badges { margin-top: 24px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-.hero .badges span { padding: 6px 16px; background: #16222e; border: 1px solid #2a3a4a; border-radius: 20px; font-size: 13px; color: #7e93a8; }
+/* ---- nav ---- */
+nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);background:rgba(7,9,13,.7);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:'Space Grotesk';font-weight:700;font-size:22px;letter-spacing:-.5px}
+.logo .dot{color:var(--orange)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--muted);font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--txt)}
+.nav-cta{padding:9px 20px;background:linear-gradient(135deg,var(--grad1),var(--grad2));border-radius:8px;color:#071018!important;font-weight:700}
 
-/* SECTION */
-section { padding: 60px 0; }
-section h2 { font-size: 32px; font-weight: 700; margin-bottom: 16px; text-align: center; }
-section h2 span { color: #f6823b; }
-section .desc { font-size: 16px; color: #7e93a8; max-width: 600px; margin: 0 auto 40px; text-align: center; }
+/* ---- hero ---- */
+.hero{min-height:92vh;display:flex;align-items:center;padding:120px 0 80px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;background:rgba(79,195,247,.1);border:1px solid rgba(79,195,247,.3);border-radius:100px;font-size:13px;color:var(--blue);font-weight:600;margin-bottom:24px}
+.hero h1{font-size:clamp(40px,6vw,72px);line-height:1.05;letter-spacing:-2px;margin-bottom:20px}
+.grad-text{background:linear-gradient(90deg,var(--grad1),var(--grad3),var(--grad2));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% auto;animation:gradientMove 6s linear infinite}
+@keyframes gradientMove{to{background-position:200% center}}
+.hero p.sub{font-size:18px;color:var(--muted);max-width:520px;margin-bottom:36px}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap}
+.btn{padding:15px 32px;border-radius:10px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:10px;transition:box-shadow .3s,background .3s;cursor:pointer;border:none;will-change:transform}
+.btn-primary{background:linear-gradient(135deg,var(--grad2),#e85d2c);color:#fff;box-shadow:0 8px 30px rgba(246,130,59,.3)}
+.btn-blue{background:linear-gradient(135deg,var(--grad1),#2196f3);color:#071018}
+.btn-ghost{border:1px solid var(--border2);color:var(--txt);background:transparent}
+.hero-stats{display:flex;gap:48px;margin-top:56px;flex-wrap:wrap}
+.stat .num{font-family:'Space Grotesk';font-size:34px;font-weight:700}
+.stat .lbl{font-size:13px;color:var(--muted)}
 
-/* FREE EA CARD */
-.card-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-.card { background: #16222e; border: 1px solid #2a3a4a; border-radius: 12px; padding: 28px; transition: border-color .3s; }
-.card:hover { border-color: #4fc3f7; }
-.card h3 { font-size: 18px; margin-bottom: 8px; }
-.card .price { color: #4fc3f7; font-size: 14px; font-weight: 600; margin-bottom: 16px; }
-.card .price .free { color: #4caf50; }
-.card ul { list-style: none; margin-bottom: 20px; }
-.card ul li { padding: 6px 0; font-size: 14px; color: #b0bec5; }
-.card ul li:before { content: "✓ "; color: #4caf50; }
-.card .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: transform .2s; }
-.card .btn-primary { background: #4fc3f7; color: #0a0e14; }
-.card .btn-primary:hover { transform: translateY(-1px); }
-.card .btn-outline { border: 1px solid #4fc3f7; color: #4fc3f7; }
-.card .btn-outline:hover { background: rgba(79,195,247,.1); }
+/* ---- mockup ---- */
+.mockup-wrap{position:relative}
+.mockup{background:var(--panel);border:1px solid var(--border2);border-radius:var(--radius);padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.5);position:relative;overflow:hidden;will-change:transform}
+.mockup::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--gold),var(--orange));opacity:.7}
+.mockup-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.mockup-title{font-weight:700;font-size:13px;letter-spacing:1px;color:var(--muted)}
+.mockup-dot{width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+.hud{display:grid;grid-template-columns:1fr;gap:2px;font-family:'Space Grotesk'}
+.hud-sec{border-left:3px solid var(--orange);padding:6px 12px;margin-bottom:6px;background:var(--panel2);border-radius:0 8px 8px 0}
+.hud-sec.blue{border-color:var(--blue)}.hud-sec.gray{border-color:var(--muted2)}.hud-sec.gold{border-color:var(--gold)}
+.hud-sec h4{font-size:11px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+.hud-row{display:flex;justify-content:space-between;font-size:14px;padding:3px 0}
+.hud-row .lbl{color:var(--muted2)}
+.hud-row .val{font-weight:700}
+.hud-row .val.g{color:var(--green)}.hud-row .val.y{color:var(--gold)}.hud-row .val.b{color:var(--blue)}
+.hud-big{font-size:26px;font-weight:700;color:var(--green);margin:4px 0}
+.hud-gauge{height:6px;background:var(--panel2);border-radius:3px;margin:8px 0;overflow:hidden}
+.hud-gauge .fill{height:100%;width:40%;background:var(--green);border-radius:3px}
+.hud-spark{height:34px;background:var(--panel2);border-radius:8px;margin-top:8px;display:flex;align-items:flex-end;gap:2px;padding:6px}
+.hud-spark span{width:4px;background:var(--green);border-radius:2px;opacity:.7}
+.pet-float{position:absolute;bottom:-30px;left:20px}
 
-/* METRICS TABLE */
-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
-th { text-align: left; padding: 12px 16px; background: #1b2733; color: #7e93a8; font-size: 13px; text-transform: uppercase; }
-td { padding: 12px 16px; border-bottom: 1px solid #22303e; font-size: 14px; }
-td.pos { color: #4caf50; font-weight: 600; }
-td.neg { color: #ef5350; font-weight: 600; }
-tr:hover { background: #1b2733; }
+/* ---- marquee ---- */
+.marquee{border-block:1px solid var(--border);padding:22px 0;overflow:hidden;background:rgba(17,23,34,.5)}
+.marquee-track{display:flex;gap:60px;white-space:nowrap;animation:scroll 30s linear infinite;width:max-content}
+.marquee-track span{font-family:'Space Grotesk';font-size:15px;color:var(--muted2);font-weight:500}
+.marquee-track b{color:var(--muted)}
+@keyframes scroll{to{transform:translateX(-50%)}}
 
-/* PRO HIGHLIGHT */
-.pro-highlight { background: linear-gradient(135deg, #1a2530 0%, #16222e 50%, #1b2733 100%); border: 2px solid #f6823b; border-radius: 12px; padding: 36px; text-align: center; }
-.pro-highlight h3 { font-size: 24px; margin-bottom: 8px; }
-.pro-highlight .big-num { font-size: 48px; font-weight: 800; color: #4caf50; }
-.pro-highlight .cta { display: inline-block; margin-top: 20px; padding: 14px 36px; background: linear-gradient(135deg, #f6823b, #e85d2c); color: #fff; font-size: 16px; font-weight: 700; text-decoration: none; border-radius: 8px; }
+/* ---- section ---- */
+.sec-head{text-align:center;max-width:640px;margin:0 auto 64px}
+.sec-head .eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:2px;color:var(--grad1);text-transform:uppercase;margin-bottom:16px}
+.sec-head h2{font-size:clamp(32px,4.5vw,48px);letter-spacing:-1.5px;margin-bottom:16px}
+.sec-head p{color:var(--muted);font-size:17px}
 
-/* CONTACT */
-.contact-section { text-align: center; padding: 60px 0; }
-.contact-section h2 { margin-bottom: 24px; }
-.contact-grid { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
-.contact-card { background: #16222e; border: 1px solid #2a3a4a; border-radius: 12px; padding: 24px 32px; text-align: center; min-width: 200px; }
-.contact-card .icon { font-size: 32px; margin-bottom: 8px; }
-.contact-card .label { color: #7e93a8; font-size: 12px; text-transform: uppercase; }
-.contact-card .value { font-size: 16px; font-weight: 600; margin-top: 4px; }
+/* ---- bento ---- */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.bento-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:border-color .3s,box-shadow .3s;position:relative;overflow:hidden;will-change:transform}
+.bento-card .icon{font-size:34px;margin-bottom:16px}
+.bento-card h3{font-size:19px;margin-bottom:10px}
+.bento-card p{font-size:14px;color:var(--muted)}
+.bento-card.big{grid-column:span 2}
+.bento-card.hot::after{content:'HOT';position:absolute;top:16px;right:16px;font-size:11px;font-weight:700;letter-spacing:1px;background:linear-gradient(135deg,var(--orange),#e85d2c);color:#fff;padding:4px 10px;border-radius:100px}
 
-/* FOOTER */
-footer { padding: 40px 0; border-top: 1px solid #1a2530; text-align: center; color: #5b6b7b; font-size: 13px; }
+/* ---- table ---- */
+.table-card{background:var(--panel);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:16px 24px;background:var(--panel2);color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border)}
+td{padding:16px 24px;border-bottom:1px solid var(--border);font-size:15px}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,.02)}
+td.pos{color:var(--green);font-weight:700}
+td .tag{display:inline-block;font-size:11px;padding:3px 10px;border-radius:100px;background:rgba(79,195,247,.1);color:var(--blue);border:1px solid rgba(79,195,247,.3)}
+td .tag.hot{background:rgba(246,130,59,.1);color:var(--orange);border-color:rgba(246,130,59,.3)}
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .hero h1 { font-size: 32px; }
-  nav a { margin-left: 12px; font-size: 12px; }
+/* ---- pricing ---- */
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.price-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:36px;display:flex;flex-direction:column;transition:border-color .3s,box-shadow .3s;will-change:transform}
+.price-card.featured{border:2px solid var(--grad1);position:relative;box-shadow:0 20px 60px rgba(79,195,247,.15)}
+.price-card.featured::before{content:'★ MOST WANTED';position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--grad1),#2196f3);color:#071018;font-size:11px;font-weight:700;letter-spacing:1px;padding:5px 16px;border-radius:100px}
+.price-card .plan{font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.price-card .amount{font-size:42px;font-weight:800;font-family:'Space Grotesk';margin-bottom:4px}
+.price-card .amount span{font-size:18px;color:var(--muted);font-weight:500}
+.price-card .per{font-size:13px;color:var(--muted2);margin-bottom:24px}
+.price-card ul{list-style:none;margin-bottom:28px;flex:1}
+.price-card ul li{padding:8px 0;font-size:14px;color:var(--muted);display:flex;gap:10px}
+.price-card ul li::before{content:'✓';color:var(--green);font-weight:700}
+.price-card .btn{justify-content:center;width:100%}
+
+/* ---- faq ---- */
+.faq{max-width:720px;margin:0 auto}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;background:var(--panel)}
+.faq-q{padding:20px 24px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:16px}
+.faq-q .chev{transition:transform .3s;color:var(--muted)}
+.faq-item.open .chev{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 24px;color:var(--muted);font-size:14px}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:20px}
+
+/* ---- contact ---- */
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.contact-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:32px;text-align:center;transition:border-color .3s;will-change:transform}
+.contact-card .icon{font-size:36px;margin-bottom:12px}
+.contact-card .label{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.contact-card .value{font-size:18px;font-weight:700;margin-top:6px;color:var(--grad1)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--border);padding:48px 0;text-align:center;color:var(--muted2);font-size:13px}
+footer .risk{max-width:640px;margin:0 auto 16px;font-size:12px}
+
+/* ---- framer-motion-style states ---- */
+.fm{opacity:0;transform:translateY(36px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.fm.in{opacity:1;transform:translateY(0)}
+.fm-scale{opacity:0;transform:scale(.94);transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1)}
+.fm-scale.in{opacity:1;transform:scale(1)}
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .hero{min-height:auto;padding:80px 0}
+  .bento{grid-template-columns:1fr}
+  .bento-card.big{grid-column:span 1}
+  .pricing{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .nav-links a:not(.nav-cta){display:none}
+  .hero-stats{gap:28px}.stat .num{font-size:26px}
 }
 </style>
 </head>
 <body>
 
-<nav>
-<div class="container">
-  <div class="logo">VILONA<span>█</span></div>
-  <div>
-    <a href="#free">Free EA</a>
-    <a href="#pro">Pro</a>
-    <a href="#cosmetic">Cosmetic</a>
-    <a href="#contact">Contact</a>
+<div class="bg-grid"></div>
+<div class="bg-blob blob1" id="b1"></div>
+<div class="bg-blob blob2" id="b2"></div>
+<div class="bg-blob blob3" id="b3"></div>
+
+<nav id="nav">
+  <div class="container">
+    <div class="logo">VILONA<span class="dot">.</span></div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#performance">Performance</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="nav-cta">Get Pro EA</a>
+    </div>
   </div>
-</div>
 </nav>
 
 <section class="hero">
-<div class="container">
-  <h1>Trade Gold on <span>MetaTrader 5</span></h1>
-  <p class="subtitle">Free &amp; Pro MT5 Expert Advisors for XAUUSD with verified backtest evidence. Open-source, transparent, honest.</p>
-  <a href="#free" class="cta">↓ Download Free EA</a>
-  <div class="badges">
-    <span>MT5 Expert Advisor</span>
-    <span>XAUUSD Gold</span>
-    <span>Verified Backtest</span>
-    <span>Free + Pro</span>
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-badge fm in">● Verified MT5 Strategy Tester Results</div>
+      <h1 class="fm in">Trade Gold with <span class="grad-text">Proven EA</span> on MetaTrader 5</h1>
+      <p class="sub fm in">Free MT5 Expert Advisor for XAUUSD, open-source and honest. Want more? Our Pro EA delivers +$35,729 backtest — with full transaction evidence you can verify.</p>
+      <div class="hero-ctas fm in">
+        <a href="#pricing" class="btn btn-primary" data-magnetic>⬇ Download Free EA</a>
+        <a href="#performance" class="btn btn-ghost" data-magnetic>View Pro Results</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat fm in"><div class="num" data-count="35729">0</div><div class="lbl">Pro Net Profit ($)</div></div>
+        <div class="stat fm in"><div class="num" data-count="1.99" data-decimal="2">0.00</div><div class="lbl">Profit Factor</div></div>
+        <div class="stat fm in"><div class="num" data-count="2700">0</div><div class="lbl">TGDH CAGR (%)</div></div>
+      </div>
+    </div>
+    <div class="mockup-wrap fm-scale in">
+      <div class="mockup" id="mockup">
+        <div class="mockup-top"><div class="mockup-title">VILONA SYSTEMATIC v1</div><div class="mockup-dot"></div></div>
+        <div class="hud">
+          <div class="hud-sec"><h4>ACCOUNT</h4><div class="hud-big">$12,345</div>
+            <div class="hud-row"><span class="lbl">Balance</span><span class="val y">$12,000</span></div>
+            <div class="hud-row"><span class="lbl">Margin Lv</span><span class="val y">256%</span></div>
+            <div class="hud-row"><span class="lbl">Free</span><span class="val b">$8,000</span></div></div>
+          <div class="hud-sec blue"><h4>RISK</h4><div class="hud-big">+$345</div>
+            <div class="hud-row"><span class="lbl">Peak / DD</span><span class="val g">$13k / 3.2%</span></div>
+            <div class="hud-gauge"><div class="fill"></div></div></div>
+          <div class="hud-sec gray"><h4>SIGNAL</h4><div class="hud-row"><span class="lbl">Signal</span><span class="val g">BUY ▲</span></div>
+            <div class="hud-row"><span class="lbl">Filter</span><span class="val b">EMA50 ABOVE</span></div></div>
+          <div class="hud-sec gold"><h4>POSITION</h4><div class="hud-row"><span class="lbl">Pos</span><span class="val g">BUY 0.50 lot</span></div>
+            <div class="hud-row"><span class="lbl">PnL</span><span class="val g">+$123.45</span></div></div>
+        </div>
+        <div class="hud-spark" id="spark"></div>
+      </div>
+      <img class="pet-float" src="cosmetic-bundle/pet-demo.gif" alt="Prabowo Pet" width="96" data-parallax>
+    </div>
   </div>
-</div>
 </section>
 
-<section id="free">
-<div class="container">
-  <h2>Free EA — <span>Vilona Basic Gold</span></h2>
-  <p class="desc">Simple EMA crossover for XAUUSD, M15. Open-source, usable, honest. No secrets, no tricks.</p>
+<div class="marquee"><div class="marquee-track" id="marquee">
+  <span><b>MT5</b> Expert Advisor</span><span><b>XAUUSD</b> Gold Trading</span><span><b>MQL5</b> Source Included</span><span><b>PF 1.99</b> Verified</span><span><b>+$35,729</b> Backtest</span><span><b>Open Source</b> Free EA</span><span><b>Brand HUD</b> + Pet</span><span><b>75.7%</b> CAGR</span>
+  <span><b>MT5</b> Expert Advisor</span><span><b>XAUUSD</b> Gold Trading</span><span><b>MQL5</b> Source Included</span><span><b>PF 1.99</b> Verified</span><span><b>+$35,729</b> Backtest</span><span><b>Open Source</b> Free EA</span><span><b>Brand HUD</b> + Pet</span><span><b>75.7%</b> CAGR</span>
+</div></div>
 
-  <div class="card-group">
-    <div class="card">
-      <h3>📥 Download</h3>
-      <p class="price"><span class="free">FREE</span> — open source</p>
-      <ul>
-        <li>EMA 20/50 crossover, M15</li>
-        <li>Long-only, 1% fixed risk</li>
-        <li>SL 3000pts, TP 6000pts</li>
-        <li>Max 1 position at a time</li>
-        <li>Source code included (.mq5)</li>
-      </ul>
-      <a href="free-ea/vilona_basic_gold.zip" class="btn btn-primary" download>⬇ Download Free EA</a>
-    </div>
-    <div class="card">
-      <h3>📊 Performance</h3>
-      <p class="price">Backtest XAUUSD.conv 2024–2026</p>
-      <ul>
-        <li>Net Profit: +$1,504</li>
-        <li>Profit Factor: 1.15</li>
-        <li>Max DD: 12.9%</li>
-        <li>Total Trades: 346</li>
-        <li>Win Rate: 63%</li>
-      </ul>
-      <a href="free-ea/evidences/backtest-report.html" class="btn btn-outline">📄 Full Report</a>
+<section class="section" id="features">
+  <div class="container">
+    <div class="sec-head"><span class="eyebrow">Why Vilona</span><h2 class="fm">Built like a hedge fund.<br>Priced like a community tool.</h2><p class="fm">Transparent evidence, no hidden tricks. Free EA to start, Pro EA for real performance.</p></div>
+    <div class="bento">
+      <div class="bento-card fm"><div class="icon">📊</div><h3>Verified Backtest</h3><p>Every claim backed by real MT5 Strategy Tester reports + full transaction history CSV.</p></div>
+      <div class="bento-card big fm"><div class="icon">🔓</div><h3>Open-Source Free EA</h3><p>Vilona Basic Gold — simple EMA 20/50 crossover, MQL5 source included. See exactly what runs on your chart. No black boxes.</p></div>
+      <div class="bento-card hot fm"><div class="icon">🏆</div><h3>Pro EA — +$35,729</h3><p>Vilona Systematic v1: PF 1.99, 86 trades, 16.2% max DD, 75.7% CAGR. Real report included.</p></div>
+      <div class="bento-card fm"><div class="icon">🎨</div><h3>Brand HUD + Pet</h3><p>Hedge-fund dashboard + Prabowo pixel-art pet with chat bubbles. Signature look on any chart.</p></div>
+      <div class="bento-card fm"><div class="icon">📦</div><h3>One-Click Install</h3><p>install.bat / install.sh copies everything to MQL5 folder automatically.</p></div>
     </div>
   </div>
-</div>
 </section>
 
-<section id="pro">
-<div class="container">
-  <h2>Pro EA — <span>True Performance</span></h2>
-  <p class="desc">Our flagship strategies. Verified by real MT5 Strategy Tester reports. Contact for pricing.</p>
-
-  <table>
-    <thead><tr><th>Strategy</th><th>Net Profit</th><th>PF</th><th>Max DD</th><th>Trades</th><th>Type</th></tr></thead>
-    <tbody>
-      <tr><td><b>Vilona_Systematic_v1</b></td><td class="pos">+$35,729</td><td>1.99</td><td>16.2%</td><td>86</td><td>Gold D1 Breakout</td></tr>
-      <tr><td><b>Vilona_HS_v119p</b></td><td class="pos">+$90,259</td><td>2.94</td><td>21.4%</td><td>27</td><td>Gold Trend</td></tr>
-      <tr><td><b>TGDH Portfolio</b></td><td class="pos">~2,700% CAGR</td><td>—</td><td>≤25%</td><td>—</td><td>Gold + Crypto Bot</td></tr>
-    </tbody>
-  </table>
-
-  
-<div class=card-group style=margin-top:32px>
-  <div class=card>
-    <h3>📊 Pro Evidence — Vilona_Systematic_v1</h3>
-    <p class="price">Real MT5 Strategy Tester Report</p>
-    <ul>
-      <li>+5,729 net profit · PF 1.99</li>
-      <li>86 trades · 16.2% max DD · 75.7% CAGR</li>
-      <li>XAUUSDc M15 2023.07–2026.08</li>
-    </ul>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <a href="pro-sneak-peek/systematic-v1/backtest-report.html" class="btn btn-outline">📄 Report</a>
-      <a href="pro-sneak-peek/systematic-v1/mt5-strategy-tester-report.html" class="btn btn-outline">🧪 MT5 Report</a>
-      <a href="pro-sneak-peek/systematic-v1/transaction-history.csv" class="btn btn-outline">📋 CSV</a>
+<section class="section" id="performance" style="background:rgba(17,23,34,.3)">
+  <div class="container">
+    <div class="sec-head"><span class="eyebrow">Performance</span><h2 class="fm">Numbers you can verify</h2><p class="fm">Every figure from real MT5 backtests. Download the full reports.</p></div>
+    <div class="table-card fm">
+      <table>
+        <thead><tr><th>Strategy</th><th>Net Profit</th><th>PF</th><th>Max DD</th><th>Trades</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><b>Vilona Basic Gold</b> <span class="tag">FREE</span></td><td class="pos">+$1,504</td><td>1.15</td><td>12.9%</td><td>346</td><td><a href="free-ea/evidences/backtest-report.html" style="color:var(--blue)">Report →</a></td></tr>
+          <tr><td><b>Vilona_Systematic_v1</b> <span class="tag hot">PRO</span></td><td class="pos">+$35,729</td><td>1.99</td><td>16.2%</td><td>86</td><td><a href="pro-sneak-peek/systematic-v1/backtest-report.html" style="color:var(--orange)">Sneak Peek →</a></td></tr>
+          <tr><td><b>Vilona_HS_v119p</b> <span class="tag hot">PRO</span></td><td class="pos">+$90,259</td><td>2.94</td><td>21.4%</td><td>27</td><td><a href="#contact" style="color:var(--orange)">Contact →</a></td></tr>
+          <tr><td><b>TGDH Portfolio</b> <span class="tag hot">PRO</span></td><td class="pos">~2,700% CAGR</td><td>—</td><td>≤25%</td><td>—</td><td><a href="#contact" style="color:var(--orange)">Contact →</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;gap:16px;justify-content:center;margin-top:32px;flex-wrap:wrap">
+      <a href="pro-sneak-peek/systematic-v1/mt5-strategy-tester-report.html" class="btn btn-ghost fm" data-magnetic>🧪 MT5 Tester Report</a>
+      <a href="pro-sneak-peek/systematic-v1/equity-chart.png" class="btn btn-ghost fm" data-magnetic>📈 Equity Chart</a>
+      <a href="pro-sneak-peek/systematic-v1/transaction-history.csv" class="btn btn-ghost fm" data-magnetic>📋 Transaction CSV</a>
     </div>
   </div>
-  <div class="card">
-    <h3>📈 Equity Curve</h3>
-    <p class="price">Real MT5 Strategy Tester</p>
-    <img src="pro-sneak-peek/systematic-v1/equity-chart.png" alt="Equity Curve" style="width:100%;border-radius:8px;margin-bottom:12px">
-    <p style="color:#7e93a8;font-size:13px">Sneak peek — full report + .set setelah pembelian</p>
-  </div>
-</div>
-
-
-  <div class="pro-highlight">
-    <h3>Vilona_Systematic_v1</h3>
-    <div class="big-num">+$35,729</div>
-    <p style="color:#7e93a8;margin:8px 0">Profit Factor 1.99 · 86 trades · 16.2% max DD · 75.7% CAGR</p>
-    <p style="color:#7e93a8;font-size:14px;margin-bottom:16px">Real MT5 Strategy Tester Report included. Full transaction history. Equity chart.</p>
-    <a href="#contact" class="cta">📩 Contact for Pricing</a>
-  </div>
-</div>
 </section>
 
-<section id="cosmetic">
-<div class="container">
-  <h2>Cosmetic Bundle — <span>Brand HUD + Pet + Sound</span></h2>
-  <p class="desc">Make your charts look like a hedge fund. Premium HUD, pixel-art Prabowo pet, and entry/exit sounds.</p>
-
-  <div class="card-group">
-    <div class="card">
-      <h3>🎨 What's Included</h3>
-      <p class="price">Rp 50.000 / $3</p>
-      <ul>
-        <li>Vilona Brand HUD (equity, balance, margin, signal, sparkline)</li>
-        <li>Prabowo pixel-art pet (sine movement, chat bubbles)</li>
-        <li>Entry/exit sound alerts (WAV)</li>
-        <li>One-click installer (.bat / .sh)</li>
-        <li>Works on ANY chart, any EA</li>
-      </ul>
-      <a href="cosmetic-bundle/vilona-cosmetic-bundle.zip" class="btn btn-primary">⬇ Download Bundle</a>
-    </div>
-    <div class="card">
-      <h3>🖼️ Preview</h3>
-      <img src="cosmetic-bundle/pet-demo.gif" alt="Prabowo Pet Demo" style="width:100%;border-radius:8px;margin-bottom:8px">
-      <img src="cosmetic-bundle/screenshot.png" alt="HUD+Pet Preview" style="width:100%;border-radius:8px;margin-bottom:12px">
-      <p style="color:#7e93a8;font-size:13px">Attach to any chart, enable InpBrandHUDOnly=true, InpPetEnabled=true</p>
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="sec-head"><span class="eyebrow">Pricing</span><h2 class="fm">Start free. Upgrade when ready.</h2><p class="fm">No subscription, no hidden fees. Pay once for the Pro EA or cosmetic bundle.</p></div>
+    <div class="pricing">
+      <div class="price-card fm"><div class="plan">Starter</div><div class="amount">$0</div><div class="per">Free forever</div>
+        <ul><li>Vilona Basic Gold EA</li><li>MQL5 source code</li><li>Backtest evidence</li><li>Community support</li></ul>
+        <a href="free-ea/vilona_basic_gold.zip" class="btn btn-blue" download data-magnetic>Download Free</a></div>
+      <div class="price-card featured fm"><div class="plan">Cosmetic</div><div class="amount">Rp 50k<span> / $3</span></div><div class="per">One-time · Brand signature</div>
+        <ul><li>Vilona Brand HUD (premium dashboard)</li><li>Prabowo pixel-art pet + chat bubbles</li><li>Entry/exit sound alerts (WAV)</li><li>One-click installer (.bat / .sh)</li><li>Works on ANY chart, any EA</li></ul>
+        <a href="cosmetic-bundle/vilona-cosmetic-bundle.zip" class="btn btn-primary" download data-magnetic>Get Bundle</a></div>
+      <div class="price-card fm"><div class="plan">Pro EA</div><div class="amount">Custom</div><div class="per">Contact for pricing</div>
+        <ul><li>Vilona Systematic v1 — PF 1.99</li><li>Vilona HS v119p — PF 2.94</li><li>Real MT5 reports + transaction history</li><li>Priority support + setup help</li></ul>
+        <a href="#contact" class="btn btn-ghost" data-magnetic>Contact</a></div>
     </div>
   </div>
-</div>
 </section>
 
-<section id="contact" class="contact-section">
-<div class="container">
-  <h2>Get in Touch</h2>
-  <div class="contact-grid">
-    <div class="contact-card">
-      <div class="icon">💬</div>
-      <div class="label">Telegram</div>
-      <div class="value">@codergaboets</div>
-    </div>
-    <div class="contact-card">
-      <div class="icon">📱</div>
-      <div class="label">WhatsApp</div>
-      <div class="value">+6285732740006</div>
-    </div>
-    <div class="contact-card">
-      <div class="icon">🐙</div>
-      <div class="label">GitHub</div>
-      <div class="value">github.com/DIRJEN-BOT/mt5-gold-trading-ea</div>
+<section class="section" id="faq">
+  <div class="container">
+    <div class="sec-head"><span class="eyebrow">FAQ</span><h2 class="fm">Questions, answered</h2></div>
+    <div class="faq">
+      <div class="faq-item fm"><div class="faq-q">Is the Free EA really free?<span class="chev">▾</span></div><div class="faq-a">Yes — 100% free, forever. MQL5 source included. No trial limits, no watermarks.</div></div>
+      <div class="faq-item fm"><div class="faq-q">Is the backtest data real?<span class="chev">▾</span></div><div class="faq-a">Absolutely. Generated by the official MT5 Strategy Tester. You can download the full transaction history CSV and equity chart to verify every trade.</div></div>
+      <div class="faq-item fm"><div class="faq-q">What's the difference between Free and Pro?<span class="chev">▾</span></div><div class="faq-a">Free EA is a simple EMA crossover (PF 1.15) — good for learning. Pro EAs use advanced multi-layer strategies (PF 1.99–2.94) with verified +$35k–$90k backtests.</div></div>
+      <div class="faq-item fm"><div class="faq-q">How do I install the cosmetic bundle?<span class="chev">▾</span></div><div class="faq-a">Run install.bat (Windows) or install.sh (Linux/Mac). It automatically copies to your MQL5 folder. Then attach Vilona_Brand_HUD.ex5 to any chart.</div></div>
+      <div class="faq-item fm"><div class="faq-q">Do you guarantee profits?<span class="chev">▾</span></div><div class="faq-a">No. We're honest: backtest ≠ future results. Markets change. Always test on a demo account first. That's the only responsible answer.</div></div>
     </div>
   </div>
-</div>
 </section>
 
-<footer>
-<div class="container">
-  <p>⚠️ Trading forex/CFD berisiko tinggi. Backtest ≠ jaminan masa depan. Selalu uji di akun demo sebelum live.</p>
-  <p style="margin-top:8px">© 2026 Vilona Trading Systems</p>
-</div>
-</footer>
+<section class="section" id="contact">
+  <div class="container">
+    <div class="sec-head"><span class="eyebrow">Contact</span><h2 class="fm">Get the Pro EA</h2><p class="fm">Reach out on Telegram or WhatsApp — we'll help you choose the right strategy.</p></div>
+    <div class="contact-grid">
+      <a href="https://t.me/codergaboets" class="contact-card fm"><div class="icon">💬</div><div class="label">Telegram</div><div class="value">@codergaboets</div></a>
+      <a href="https://wa.me/6285732740006" class="contact-card fm"><div class="icon">📱</div><div class="label">WhatsApp</div><div class="value">+6285732740006</div></a>
+      <a href="https://github.com/DIRJEN-BOT/mt5-gold-trading-ea" class="contact-card fm"><div class="icon">🐙</div><div class="label">GitHub</div><div class="value">mt5-gold-trading-ea</div></a>
+    </div>
+  </div>
+</section>
 
+<footer><div class="container">
+  <p class="risk">⚠️ Trading forex and CFDs carries a high level of risk and may not be suitable for all investors. Backtest results are historical simulations and do not guarantee future performance. Always test on a demo account before trading with real money.</p>
+  <p>© 2026 Vilona Trading Systems · Built with passion for algorithmic trading</p>
+</div></footer>
+
+<script>
+/* ================= FRAMER-MOTION-STYLE ENGINE (vanilla, spring physics) ================= */
+
+// --- 1. Spring physics (Framer Motion feel) ---
+function spring(from, to, onUpdate, {stiffness=180, damping=20, mass=1}={}){
+  let v=0, x=from, last=performance.now();
+  function step(now){
+    const dt=Math.min((now-last)/1000, .05); last=now;
+    const a=(-stiffness*(x-to))/mass - damping*v;
+    v+=a*dt; x+=v*dt;
+    onUpdate(x);
+    if(Math.abs(x-to)>.001 || Math.abs(v)>.001) requestAnimationFrame(step);
+    else onUpdate(to);
+  }
+  requestAnimationFrame(step);
+}
+
+// --- 2. Scroll reveal with stagger (whileInView) ---
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      // stagger: reveal items with a small delay
+      const siblings=[...e.target.parentElement.children].filter(c=>c.classList.contains('fm')||c.classList.contains('fm-scale'));
+      const idx=siblings.indexOf(e.target);
+      setTimeout(()=>e.target.classList.add('in'), idx*80);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.fm, .fm-scale').forEach(el=>io.observe(el));
+
+// hero elements already visible (stagger on load)
+document.querySelectorAll('.hero .fm, .hero .fm-scale').forEach((el,i)=>{
+  el.classList.remove('in'); setTimeout(()=>el.classList.add('in'), i*120);
+});
+
+// --- 3. Magnetic buttons (whileHover with spring) ---
+document.querySelectorAll('[data-magnetic]').forEach(btn=>{
+  btn.addEventListener('mousemove',(e)=>{
+    const r=btn.getBoundingClientRect();
+    const dx=(e.clientX-r.left-r.width/2)*.3, dy=(e.clientY-r.top-r.height/2)*.3;
+    btn.style.transform=`translate(${dx}px,${dy}px) scale(1.03)`;
+  });
+  btn.addEventListener('mouseleave',()=>{ btn.style.transform='translate(0,0) scale(1)'; });
+});
+
+// --- 4. 3D tilt on mockup + cards (whileHover rotateX/Y) ---
+const mockup=document.getElementById('mockup');
+mockup.addEventListener('mousemove',(e)=>{
+  const r=mockup.getBoundingClientRect();
+  const rx=((e.clientY-r.top)/r.height-.5)*10, ry=((e.clientX-r.left)/r.width-.5)*10;
+  mockup.style.transform=`perspective(900px) rotateX(${-rx}deg) rotateY(${ry}deg)`;
+});
+mockup.addEventListener('mouseleave',()=>{ spring(0,0,v=>mockup.style.transform=`perspective(900px) rotateX(${v}deg) rotateY(${v}deg)`); });
+document.querySelectorAll('.bento-card, .price-card, .contact-card').forEach(card=>{
+  card.addEventListener('mousemove',(e)=>{
+    const r=card.getBoundingClientRect();
+    const rx=((e.clientY-r.top)/r.height-.5)*6, ry=((e.clientX-r.left)/r.width-.5)*6;
+    card.style.transform=`perspective(800px) rotateX(${-rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+  });
+  card.addEventListener('mouseleave',()=>{ card.style.transform=''; });
+});
+
+// --- 5. Parallax blobs + pet (mousemove) ---
+const b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
+let mx=0,my=0;
+document.addEventListener('mousemove',(e)=>{
+  mx=(e.clientX/innerWidth-.5)*40; my=(e.clientY/innerHeight-.5)*40;
+  b1.style.transform=`translate(${mx}px,${my}px)`;
+  b2.style.transform=`translate(${-mx*1.4}px,${-my*1.2}px)`;
+  b3.style.transform=`translate(${mx*.8}px,${my*.9}px)`;
+});
+
+// --- 6. Animated counters ---
+function animateCount(el){
+  const target=parseFloat(el.dataset.count), dec=parseInt(el.dataset.decimal||0);
+  let start=0; const dur=1600, t0=performance.now();
+  function tick(t){ const p=Math.min((t-t0)/dur,1); const eased=1-Math.pow(1-p,3);
+    const val=start+(target-start)*eased;
+    el.textContent=dec?val.toFixed(dec):Math.round(val).toLocaleString();
+    if(p<1)requestAnimationFrame(tick);}
+  requestAnimationFrame(tick);
+}
+const io2=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){animateCount(e.target);io2.unobserve(e.target);}});},{threshold:.5});
+document.querySelectorAll('.stat .num').forEach(el=>io2.observe(el));
+
+// --- 7. FAQ ---
+document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
+
+// --- 8. Sparkline (live) ---
+const spark=document.getElementById('spark');
+for(let i=0;i<60;i++)spark.appendChild(document.createElement('span'));
+setInterval(()=>{document.querySelectorAll('#spark span').forEach((s,i)=>{
+  const v=8+6*Math.sin((Date.now()/300)+i/6)+3*Math.cos((Date.now()/400)+i/5);
+  s.style.height=v+'px'; s.style.background=(i%2)?'var(--green)':'var(--red)';
+});},80);
+
+// --- 9. Nav shadow on scroll ---
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').style.boxShadow=scrollY>20?'0 10px 30px rgba(0,0,0,.4)':'none';
+});
+</script>
 </body>
 </html>
