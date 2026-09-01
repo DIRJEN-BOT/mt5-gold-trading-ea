@@ -36,6 +36,12 @@
 
 [📩 Contact for pricing →](#contact)
 
+**Pro Evidence (sneak peek):**
+- [Backtest Report](pro-sneak-peek/systematic-v1/backtest-report.html)
+- [MT5 Strategy Tester Report](pro-sneak-peek/systematic-v1/mt5-strategy-tester-report.html)
+- [Transaction History CSV](pro-sneak-peek/systematic-v1/transaction-history.csv)
+- [Equity Chart](pro-sneak-peek/systematic-v1/equity-chart.png)
+
 ## 🎨 Cosmetic Bundle — Brand HUD + Pet + Sound
 
 **Rp 50.000 / $3 — make your chart look like a hedge fund.**
