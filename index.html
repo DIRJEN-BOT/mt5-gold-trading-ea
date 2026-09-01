@@ -4,188 +4,199 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vilona Gold Trading EA — Free MT5 Expert Advisor for XAUUSD</title>
-<meta name="description" content="Download free MT5 gold trading EA for XAUUSD. Verified backtest with equity chart. Pro EA with PF 1.99, +$35,729. Contact @codergaboets, WhatsApp +6285732740006.">
-<meta name="keywords" content="MT5 EA, gold trading EA, XAUUSD trading bot, free MT5 expert advisor, MetaTrader 5 gold, forex EA, mql5">
-<meta name="theme-color" content="#07090d">
-<meta property="og:title" content="Vilona Gold Trading EA">
-<meta property="og:description" content="Free MT5 EA + Pro EA with verified backtest (PF 1.99, +$35,729) + Vilona Brand HUD cosmetic bundle.">
+<meta name="description" content="Download free MT5 gold trading EA for XAUUSD. Verified backtest. Pro EA PF 1.99, +$35,729. Contact @codergaboets, +6285732740006.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#07090d; --bg2:#0a0e14; --panel:#111722; --panel2:#0d131c;
-  --border:#1c2634; --border2:#2a3a4a;
-  --txt:#e8edf4; --muted:#8a9bb0; --muted2:#6b7d93;
-  --gold:#f0b429; --orange:#f6823b; --blue:#4fc3f7; --green:#4caf50; --red:#ef5350;
-  --grad1:#4fc3f7; --grad2:#f6823b; --grad3:#f0b429;
-  --radius:16px;
-}
+:root{--bg:#06080c;--bg2:#090c12;--panel:#0f141e;--border:#18212e;--border2:#253040;--txt:#eaf0f8;--muted:#7a8da3;--gold:#f0b429;--orange:#f6823b;--blue:#4fc3f7;--green:#4caf50;--red:#ef5350;--radius:16px;--g1:linear-gradient(135deg,#4fc3f7,#f6823b,#f0b429)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden}
-h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;cursor:crosshair}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif}
 a{text-decoration:none;color:inherit}
 .container{max-width:1140px;margin:0 auto;padding:0 24px}
-.section{padding:110px 0;position:relative}
+.section{padding:120px 0;position:relative}
 
-/* ---- animated background ---- */
-.bg-grid{position:fixed;inset:0;z-index:-2;pointer-events:none;
-  background:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:44px 44px;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 60%,transparent 100%)}
-.bg-blob{position:fixed;border-radius:50%;filter:blur(120px);opacity:.22;z-index:-2;pointer-events:none;transition:transform .2s ease-out}
-.blob1{width:600px;height:600px;background:var(--blue);top:-200px;left:-150px}
-.blob2{width:500px;height:500px;background:var(--orange);top:30%;right:-200px}
-.blob3{width:400px;height:400px;background:var(--gold);bottom:-100px;left:30%}
+/* ---- particle canvas ---- */
+#particles{position:fixed;inset:0;z-index:-1;pointer-events:none}
+
+/* ---- cursor glow ---- */
+#cursor{position:fixed;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(79,195,247,.08) 0%,transparent 70%);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s;}
+
+/* ---- progress bar ---- */
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--g1);z-index:9998;width:0%;transition:width .1s}
 
 /* ---- nav ---- */
-nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);background:rgba(7,9,13,.7);border-bottom:1px solid var(--border);transition:box-shadow .3s}
-nav .container{display:flex;align-items:center;justify-content:space-between;height:68px}
-.logo{font-family:'Space Grotesk';font-weight:700;font-size:22px;letter-spacing:-.5px}
-.logo .dot{color:var(--orange)}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{color:var(--muted);font-size:14px;font-weight:500;transition:color .2s}
-.nav-links a:hover{color:var(--txt)}
-.nav-cta{padding:9px 20px;background:linear-gradient(135deg,var(--grad1),var(--grad2));border-radius:8px;color:#071018!important;font-weight:700}
+nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(24px) saturate(1.4);background:rgba(6,8,12,.7);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:'Space Grotesk';font-size:24px;font-weight:800;letter-spacing:-1px}
+.logo span{background:var(--g1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{color:var(--muted);font-size:14px;font-weight:500;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--g1);transition:width .3s}
+.nav-links a:hover{color:var(--txt)}.nav-links a:hover::after{width:100%}
+.nav-cta{padding:10px 24px;background:var(--g1);border-radius:8px;color:#06080c!important;font-weight:700;box-shadow:0 4px 20px rgba(79,195,247,.25)}
+.nav-cta::after{display:none!important}
 
 /* ---- hero ---- */
-.hero{min-height:92vh;display:flex;align-items:center;padding:120px 0 80px;position:relative}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;background:rgba(79,195,247,.1);border:1px solid rgba(79,195,247,.3);border-radius:100px;font-size:13px;color:var(--blue);font-weight:600;margin-bottom:24px}
-.hero h1{font-size:clamp(40px,6vw,72px);line-height:1.05;letter-spacing:-2px;margin-bottom:20px}
-.grad-text{background:linear-gradient(90deg,var(--grad1),var(--grad3),var(--grad2));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% auto;animation:gradientMove 6s linear infinite}
-@keyframes gradientMove{to{background-position:200% center}}
-.hero p.sub{font-size:18px;color:var(--muted);max-width:520px;margin-bottom:36px}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;gap:8px;padding:8px 18px;background:rgba(79,195,247,.08);border:1px solid rgba(79,195,247,.25);border-radius:100px;font-size:13px;font-weight:600;color:var(--blue);margin-bottom:28px;backdrop-filter:blur(4px)}
+.hero h1{font-size:clamp(42px,5.5vw,74px);line-height:1.04;letter-spacing:-2.5px;margin-bottom:22px;position:relative}
+.grad-text{background:var(--g1);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% auto;animation:gb 4s ease infinite}
+@keyframes gb{50%{background-position:100% center}}
+.hero .sub{font-size:18px;color:var(--muted);max-width:500px;margin-bottom:40px;line-height:1.7}
 .hero-ctas{display:flex;gap:16px;flex-wrap:wrap}
-.btn{padding:15px 32px;border-radius:10px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:10px;transition:box-shadow .3s,background .3s;cursor:pointer;border:none;will-change:transform}
-.btn-primary{background:linear-gradient(135deg,var(--grad2),#e85d2c);color:#fff;box-shadow:0 8px 30px rgba(246,130,59,.3)}
-.btn-blue{background:linear-gradient(135deg,var(--grad1),#2196f3);color:#071018}
-.btn-ghost{border:1px solid var(--border2);color:var(--txt);background:transparent}
-.hero-stats{display:flex;gap:48px;margin-top:56px;flex-wrap:wrap}
-.stat .num{font-family:'Space Grotesk';font-size:34px;font-weight:700}
-.stat .lbl{font-size:13px;color:var(--muted)}
+.btn{padding:16px 34px;border-radius:10px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:10px;border:none;cursor:pointer;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;will-change:transform}
+.btn::before{content:'';position:absolute;inset:0;opacity:0;background:rgba(255,255,255,.1);transition:opacity .3s}
+.btn:hover::before{opacity:1}
+.btn-primary{background:var(--g1);color:#06080c;box-shadow:0 8px 30px rgba(246,130,59,.3)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(246,130,59,.45)}
+.btn-ghost{border:1px solid var(--border2);color:var(--txt);background:rgba(255,255,255,.02);backdrop-filter:blur(4px)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-3px)}
+
+/* ---- live ticker ---- */
+.ticker{display:flex;gap:12px;margin-top:48px;flex-wrap:wrap}
+.ticker-item{padding:8px 16px;background:rgba(15,20,30,.6);border:1px solid var(--border);border-radius:100px;font-size:13px;backdrop-filter:blur(4px)}
+.ticker-item .lbl{color:var(--muted2)}.ticker-item .val{font-weight:700;margin-left:6px}
+.ticker-item .val.g{color:var(--green)}.ticker-item .val.r{color:var(--red)}
+
+/* ---- stats ---- */
+.hero-stats{display:flex;gap:48px;margin-top:48px;flex-wrap:wrap}
+.stat .num{font-family:'Space Grotesk';font-size:36px;font-weight:800;background:var(--g1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .lbl{font-size:13px;color:var(--muted)}.stat .lbl b{color:var(--txt)}
 
 /* ---- mockup ---- */
-.mockup-wrap{position:relative}
-.mockup{background:var(--panel);border:1px solid var(--border2);border-radius:var(--radius);padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.5);position:relative;overflow:hidden;will-change:transform}
-.mockup::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--gold),var(--orange));opacity:.7}
+.mockup-wrap{position:relative;perspective:1000px}
+.mockup{background:var(--panel);border:1px solid var(--border2);border-radius:var(--radius);padding:24px;box-shadow:0 30px 100px rgba(0,0,0,.6);position:relative;overflow:hidden;transform:rotateY(-4deg) rotateX(2deg);transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.mockup:hover{transform:rotateY(0) rotateX(0)}
+.mockup::before{content:'';position:absolute;top:0;left:-100%;width:200%;height:2px;background:linear-gradient(90deg,transparent,var(--blue),var(--gold),var(--orange),transparent);animation:shimmer 4s linear infinite;opacity:.8}
+@keyframes shimmer{to{transform:translateX(50%)}}
 .mockup-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.mockup-title{font-weight:700;font-size:13px;letter-spacing:1px;color:var(--muted)}
-.mockup-dot{width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
-.hud{display:grid;grid-template-columns:1fr;gap:2px;font-family:'Space Grotesk'}
-.hud-sec{border-left:3px solid var(--orange);padding:6px 12px;margin-bottom:6px;background:var(--panel2);border-radius:0 8px 8px 0}
+.mockup-title{font-weight:700;font-size:12px;letter-spacing:1.5px;color:var(--muted2)}
+.mockup-dot{width:10px;height:10px;border-radius:50%;background:var(--green);animation:pulse 2s ease infinite;box-shadow:0 0 16px var(--green)}
+@keyframes pulse{50%{opacity:.4;box-shadow:0 0 4px var(--green)}}
+/* HUD styling */
+.hud{display:grid;gap:3px;font-family:'Space Grotesk'}
+.hud-sec{border-left:3px solid var(--orange);padding:8px 14px;background:rgba(13,19,28,.8);border-radius:0 10px 10px 0;backdrop-filter:blur(4px);transition:border-color .3s}
 .hud-sec.blue{border-color:var(--blue)}.hud-sec.gray{border-color:var(--muted2)}.hud-sec.gold{border-color:var(--gold)}
-.hud-sec h4{font-size:11px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+.hud-sec h4{font-size:10px;letter-spacing:2px;color:var(--muted2);text-transform:uppercase;margin-bottom:4px;font-weight:600}
 .hud-row{display:flex;justify-content:space-between;font-size:14px;padding:3px 0}
-.hud-row .lbl{color:var(--muted2)}
-.hud-row .val{font-weight:700}
+.hud-row .lbl{color:var(--muted2)}.hud-row .val{font-weight:700}
 .hud-row .val.g{color:var(--green)}.hud-row .val.y{color:var(--gold)}.hud-row .val.b{color:var(--blue)}
-.hud-big{font-size:26px;font-weight:700;color:var(--green);margin:4px 0}
-.hud-gauge{height:6px;background:var(--panel2);border-radius:3px;margin:8px 0;overflow:hidden}
-.hud-gauge .fill{height:100%;width:40%;background:var(--green);border-radius:3px}
-.hud-spark{height:34px;background:var(--panel2);border-radius:8px;margin-top:8px;display:flex;align-items:flex-end;gap:2px;padding:6px}
-.hud-spark span{width:4px;background:var(--green);border-radius:2px;opacity:.7}
-.pet-float{position:absolute;bottom:-30px;left:20px}
+.hud-big{font-size:28px;font-weight:800;color:var(--green);margin:4px 0}
+.hud-gauge{height:6px;background:rgba(13,19,28,.8);border-radius:3px;margin:10px 0;overflow:hidden}
+.hud-gauge .fill{height:100%;width:40%;background:var(--g1);border-radius:3px;animation:gaugePulse 3s ease infinite}
+@keyframes gaugePulse{50%{width:60%}}
+.hud-spark{height:40px;background:rgba(13,19,28,.8);border-radius:8px;margin-top:10px;display:flex;align-items:flex-end;gap:2px;padding:8px 6px 6px}
+.hud-spark span{width:4px;border-radius:2px;opacity:.8;transition:height .1s}
+.pet-float{position:absolute;bottom:-40px;left:20px;filter:drop-shadow(0 4px 20px rgba(0,0,0,.5));animation:petBob 4s ease-in-out infinite}
+@keyframes petBob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-16px) rotate(2deg)}}
 
 /* ---- marquee ---- */
-.marquee{border-block:1px solid var(--border);padding:22px 0;overflow:hidden;background:rgba(17,23,34,.5)}
-.marquee-track{display:flex;gap:60px;white-space:nowrap;animation:scroll 30s linear infinite;width:max-content}
-.marquee-track span{font-family:'Space Grotesk';font-size:15px;color:var(--muted2);font-weight:500}
-.marquee-track b{color:var(--muted)}
+.marquee{border-block:1px solid var(--border);padding:24px 0;overflow:hidden;background:rgba(15,20,30,.3)}
+.marquee-track{display:flex;gap:64px;white-space:nowrap;animation:scroll 40s linear infinite;width:max-content}
+.marquee-track span{font-family:'Space Grotesk';font-size:14px;color:var(--muted2);font-weight:500}
+.marquee-track b{color:var(--txt)}
 @keyframes scroll{to{transform:translateX(-50%)}}
 
-/* ---- section ---- */
+/* ---- section header ---- */
 .sec-head{text-align:center;max-width:640px;margin:0 auto 64px}
-.sec-head .eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:2px;color:var(--grad1);text-transform:uppercase;margin-bottom:16px}
-.sec-head h2{font-size:clamp(32px,4.5vw,48px);letter-spacing:-1.5px;margin-bottom:16px}
-.sec-head p{color:var(--muted);font-size:17px}
+.sec-head .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;background:var(--g1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sec-head h2{font-size:clamp(34px,4.5vw,52px);letter-spacing:-2px;margin-bottom:18px;line-height:1.1}
+.sec-head p{color:var(--muted);font-size:17px;line-height:1.7}
 
 /* ---- bento ---- */
 .bento{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.bento-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:border-color .3s,box-shadow .3s;position:relative;overflow:hidden;will-change:transform}
-.bento-card .icon{font-size:34px;margin-bottom:16px}
-.bento-card h3{font-size:19px;margin-bottom:10px}
-.bento-card p{font-size:14px;color:var(--muted)}
+.bento-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:32px;position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s;will-change:transform}
+.bento-card::before{content:'';position:absolute;inset:0;opacity:0;background:linear-gradient(135deg,transparent,rgba(79,195,247,.03),transparent);transition:opacity .5s}
+.bento-card:hover::before{opacity:1}
+.bento-card .icon{font-size:36px;margin-bottom:16px;display:block}
+.bento-card h3{font-size:20px;margin-bottom:10px}
+.bento-card p{font-size:14px;color:var(--muted);line-height:1.7}
 .bento-card.big{grid-column:span 2}
-.bento-card.hot::after{content:'HOT';position:absolute;top:16px;right:16px;font-size:11px;font-weight:700;letter-spacing:1px;background:linear-gradient(135deg,var(--orange),#e85d2c);color:#fff;padding:4px 10px;border-radius:100px}
+.bento-card.hot::after{content:'★ HOT';position:absolute;top:16px;right:16px;font-size:10px;font-weight:700;letter-spacing:1px;background:var(--g1);color:#06080c;padding:4px 12px;border-radius:100px;animation:hotPulse 2s ease infinite}
+@keyframes hotPulse{50%{transform:scale(1.05)}}
 
 /* ---- table ---- */
-.table-card{background:var(--panel);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden}
+.table-card{background:var(--panel);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;backdrop-filter:blur(4px)}
 table{width:100%;border-collapse:collapse}
-th{text-align:left;padding:16px 24px;background:var(--panel2);color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border)}
-td{padding:16px 24px;border-bottom:1px solid var(--border);font-size:15px}
+th{text-align:left;padding:18px 24px;background:rgba(6,8,12,.4);color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border)}
+td{padding:18px 24px;border-bottom:1px solid var(--border);font-size:15px}
 tr:last-child td{border-bottom:none}
-tr:hover td{background:rgba(255,255,255,.02)}
+tr{transition:background .3s}
+tr:hover td{background:rgba(79,195,247,.03)}
 td.pos{color:var(--green);font-weight:700}
-td .tag{display:inline-block;font-size:11px;padding:3px 10px;border-radius:100px;background:rgba(79,195,247,.1);color:var(--blue);border:1px solid rgba(79,195,247,.3)}
-td .tag.hot{background:rgba(246,130,59,.1);color:var(--orange);border-color:rgba(246,130,59,.3)}
+td .tag{display:inline-block;font-size:11px;padding:3px 10px;border-radius:100px;background:rgba(79,195,247,.08);color:var(--blue);border:1px solid rgba(79,195,247,.2)}
+td .tag.hot{background:rgba(246,130,59,.08);color:var(--orange);border-color:rgba(246,130,59,.2)}
 
 /* ---- pricing ---- */
 .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
 .price-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:36px;display:flex;flex-direction:column;transition:border-color .3s,box-shadow .3s;will-change:transform}
-.price-card.featured{border:2px solid var(--grad1);position:relative;box-shadow:0 20px 60px rgba(79,195,247,.15)}
-.price-card.featured::before{content:'★ MOST WANTED';position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--grad1),#2196f3);color:#071018;font-size:11px;font-weight:700;letter-spacing:1px;padding:5px 16px;border-radius:100px}
-.price-card .plan{font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
-.price-card .amount{font-size:42px;font-weight:800;font-family:'Space Grotesk';margin-bottom:4px}
+.price-card.featured{border:2px solid var(--blue);position:relative;box-shadow:0 20px 60px rgba(79,195,247,.12)}
+.price-card.featured::before{content:'★ MOST WANTED';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--g1);color:#06080c;font-size:11px;font-weight:700;letter-spacing:1.5px;padding:6px 18px;border-radius:100px;white-space:nowrap}
+.price-card .plan{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.price-card .amount{font-size:44px;font-weight:800;font-family:'Space Grotesk';margin-bottom:4px}
 .price-card .amount span{font-size:18px;color:var(--muted);font-weight:500}
 .price-card .per{font-size:13px;color:var(--muted2);margin-bottom:24px}
 .price-card ul{list-style:none;margin-bottom:28px;flex:1}
-.price-card ul li{padding:8px 0;font-size:14px;color:var(--muted);display:flex;gap:10px}
-.price-card ul li::before{content:'✓';color:var(--green);font-weight:700}
+.price-card ul li{padding:9px 0;font-size:14px;color:var(--muted);display:flex;gap:10px;align-items:center}
+.price-card ul li::before{content:'✓';color:var(--green);font-weight:700;font-size:16px}
 .price-card .btn{justify-content:center;width:100%}
 
 /* ---- faq ---- */
 .faq{max-width:720px;margin:0 auto}
-.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;background:var(--panel)}
-.faq-q{padding:20px 24px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:16px}
-.faq-q .chev{transition:transform .3s;color:var(--muted)}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;background:var(--panel);transition:border-color .3s}
+.faq-item:hover{border-color:var(--border2)}
+.faq-q{padding:20px 24px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:16px;gap:16px}
+.faq-q .chev{transition:transform .4s cubic-bezier(.16,1,.3,1);color:var(--muted);font-size:20px;font-weight:300}
 .faq-item.open .chev{transform:rotate(180deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 24px;color:var(--muted);font-size:14px}
-.faq-item.open .faq-a{max-height:300px;padding-bottom:20px}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1);padding:0 24px;color:var(--muted);font-size:14px;line-height:1.7}
+.faq-item.open .faq-a{max-height:400px;padding-bottom:20px}
 
 /* ---- contact ---- */
 .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.contact-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:32px;text-align:center;transition:border-color .3s;will-change:transform}
-.contact-card .icon{font-size:36px;margin-bottom:12px}
-.contact-card .label{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
-.contact-card .value{font-size:18px;font-weight:700;margin-top:6px;color:var(--grad1)}
+.contact-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:36px;text-align:center;transition:border-color .3s,transform .3s;will-change:transform;display:block}
+.contact-card:hover{border-color:var(--blue);transform:translateY(-6px)}
+.contact-card .icon{font-size:40px;margin-bottom:14px;display:block}
+.contact-card .label{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px}
+.contact-card .value{font-size:19px;font-weight:700;background:var(--g1);-webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* ---- footer ---- */
 footer{border-top:1px solid var(--border);padding:48px 0;text-align:center;color:var(--muted2);font-size:13px}
-footer .risk{max-width:640px;margin:0 auto 16px;font-size:12px}
+footer .risk{max-width:640px;margin:0 auto 16px;font-size:12px;color:var(--muted2);line-height:1.7}
 
-/* ---- framer-motion-style states ---- */
-.fm{opacity:0;transform:translateY(36px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+/* ---- reveal ---- */
+.fm{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .fm.in{opacity:1;transform:translateY(0)}
-.fm-scale{opacity:0;transform:scale(.94);transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1)}
-.fm-scale.in{opacity:1;transform:scale(1)}
+.fm-scale{opacity:0;transform:scale(.92) translateY(20px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.fm-scale.in{opacity:1;transform:scale(1) translateY(0)}
+.fm-left{opacity:0;transform:translateX(-40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.fm-left.in{opacity:1;transform:translateX(0)}
+.fm-right{opacity:0;transform:translateX(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.fm-right.in{opacity:1;transform:translateX(0)}
+
 @media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr;gap:48px}
-  .hero{min-height:auto;padding:80px 0}
-  .bento{grid-template-columns:1fr}
-  .bento-card.big{grid-column:span 1}
-  .pricing{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr}
+  .hero-grid{grid-template-columns:1fr;gap:40px}.hero{min-height:auto;padding:80px 0}
+  .bento{grid-template-columns:1fr}.bento-card.big{grid-column:span 1}
+  .pricing{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}
   .nav-links a:not(.nav-cta){display:none}
-  .hero-stats{gap:28px}.stat .num{font-size:26px}
+  .hero-stats{gap:24px}.stat .num{font-size:28px}
 }
 </style>
 </head>
 <body>
 
-<div class="bg-grid"></div>
-<div class="bg-blob blob1" id="b1"></div>
-<div class="bg-blob blob2" id="b2"></div>
-<div class="bg-blob blob3" id="b3"></div>
+<canvas id="particles"></canvas>
+<div id="cursor"></div>
+<div id="progress"></div>
 
 <nav id="nav">
   <div class="container">
-    <div class="logo">VILONA<span class="dot">.</span></div>
+    <div class="logo">VILONA<span>.</span></div>
     <div class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#performance">Performance</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
+      <a href="#features">Features</a><a href="#performance">Results</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
       <a href="#contact" class="nav-cta">Get Pro EA</a>
     </div>
   </div>
@@ -195,42 +206,43 @@ footer .risk{max-width:640px;margin:0 auto 16px;font-size:12px}
   <div class="container hero-grid">
     <div>
       <div class="hero-badge fm in">● Verified MT5 Strategy Tester Results</div>
-      <h1 class="fm in">Trade Gold with <span class="grad-text">Proven EA</span> on MetaTrader 5</h1>
-      <p class="sub fm in">Free MT5 Expert Advisor for XAUUSD, open-source and honest. Want more? Our Pro EA delivers +$35,729 backtest — with full transaction evidence you can verify.</p>
+      <h1 class="fm in">Trade Gold with <span class="grad-text">Proven&nbsp;EA</span> on MetaTrader&nbsp;5</h1>
+      <p class="sub fm in">Free MT5 Expert Advisor for XAUUSD, open-source and honest. Want more? Pro EA delivers +$35,729 backtest — full transaction evidence you can verify.</p>
       <div class="hero-ctas fm in">
-        <a href="#pricing" class="btn btn-primary" data-magnetic>⬇ Download Free EA</a>
-        <a href="#performance" class="btn btn-ghost" data-magnetic>View Pro Results</a>
+        <a href="#pricing" class="btn btn-primary">⬇ Download Free EA</a>
+        <a href="#performance" class="btn btn-ghost">View Pro Results</a>
       </div>
-      <div class="hero-stats">
-        <div class="stat fm in"><div class="num" data-count="35729">0</div><div class="lbl">Pro Net Profit ($)</div></div>
-        <div class="stat fm in"><div class="num" data-count="1.99" data-decimal="2">0.00</div><div class="lbl">Profit Factor</div></div>
-        <div class="stat fm in"><div class="num" data-count="2700">0</div><div class="lbl">TGDH CAGR (%)</div></div>
+      <div class="ticker fm in">
+        <div class="ticker-item"><span class="lbl">XAUUSD</span><span class="val g" id="price">2,635.42</span></div>
+        <div class="ticker-item"><span class="lbl">Daily Change</span><span class="val g" id="change">+0.42%</span></div>
+        <div class="ticker-item"><span class="lbl">Pro EA PF</span><span class="val g">1.99</span></div>
+        <div class="ticker-item"><span class="lbl">Pro Net</span><span class="val g">+$35,729</span></div>
       </div>
     </div>
     <div class="mockup-wrap fm-scale in">
       <div class="mockup" id="mockup">
         <div class="mockup-top"><div class="mockup-title">VILONA SYSTEMATIC v1</div><div class="mockup-dot"></div></div>
-        <div class="hud">
-          <div class="hud-sec"><h4>ACCOUNT</h4><div class="hud-big">$12,345</div>
-            <div class="hud-row"><span class="lbl">Balance</span><span class="val y">$12,000</span></div>
-            <div class="hud-row"><span class="lbl">Margin Lv</span><span class="val y">256%</span></div>
-            <div class="hud-row"><span class="lbl">Free</span><span class="val b">$8,000</span></div></div>
-          <div class="hud-sec blue"><h4>RISK</h4><div class="hud-big">+$345</div>
-            <div class="hud-row"><span class="lbl">Peak / DD</span><span class="val g">$13k / 3.2%</span></div>
+        <div class="hud" id="hud">
+          <div class="hud-sec"><h4>ACCOUNT</h4><div class="hud-big" id="eqVal">$12,345</div>
+            <div class="hud-row"><span>Balance</span><span class="val y">$12,000</span></div>
+            <div class="hud-row"><span>Margin Lv</span><span class="val y">256%</span></div>
+            <div class="hud-row"><span>Free</span><span class="val b">$8,000</span></div></div>
+          <div class="hud-sec blue"><h4>RISK</h4><div class="hud-big" id="dayVal">+$345</div>
+            <div class="hud-row"><span>Peak / DD</span><span class="val g">$13k / 3.2%</span></div>
             <div class="hud-gauge"><div class="fill"></div></div></div>
-          <div class="hud-sec gray"><h4>SIGNAL</h4><div class="hud-row"><span class="lbl">Signal</span><span class="val g">BUY ▲</span></div>
-            <div class="hud-row"><span class="lbl">Filter</span><span class="val b">EMA50 ABOVE</span></div></div>
-          <div class="hud-sec gold"><h4>POSITION</h4><div class="hud-row"><span class="lbl">Pos</span><span class="val g">BUY 0.50 lot</span></div>
-            <div class="hud-row"><span class="lbl">PnL</span><span class="val g">+$123.45</span></div></div>
+          <div class="hud-sec gray"><h4>SIGNAL</h4><div class="hud-row"><span>Signal</span><span class="val g" id="sigVal">BUY ▲</span></div>
+            <div class="hud-row"><span>Filter</span><span class="val b">EMA50 ABOVE</span></div></div>
+          <div class="hud-sec gold"><h4>POSITION</h4><div class="hud-row"><span>Pos</span><span class="val g">BUY 0.50 lot</span></div>
+            <div class="hud-row"><span>PnL</span><span class="val g" id="pnlVal">+$123.45</span></div></div>
         </div>
         <div class="hud-spark" id="spark"></div>
       </div>
-      <img class="pet-float" src="cosmetic-bundle/pet-demo.gif" alt="Prabowo Pet" width="96" data-parallax>
+      <img class="pet-float" src="cosmetic-bundle/pet-demo.gif" alt="Pet" width="96">
     </div>
   </div>
 </section>
 
-<div class="marquee"><div class="marquee-track" id="marquee">
+<div class="marquee"><div class="marquee-track">
   <span><b>MT5</b> Expert Advisor</span><span><b>XAUUSD</b> Gold Trading</span><span><b>MQL5</b> Source Included</span><span><b>PF 1.99</b> Verified</span><span><b>+$35,729</b> Backtest</span><span><b>Open Source</b> Free EA</span><span><b>Brand HUD</b> + Pet</span><span><b>75.7%</b> CAGR</span>
   <span><b>MT5</b> Expert Advisor</span><span><b>XAUUSD</b> Gold Trading</span><span><b>MQL5</b> Source Included</span><span><b>PF 1.99</b> Verified</span><span><b>+$35,729</b> Backtest</span><span><b>Open Source</b> Free EA</span><span><b>Brand HUD</b> + Pet</span><span><b>75.7%</b> CAGR</span>
 </div></div>
@@ -239,18 +251,18 @@ footer .risk{max-width:640px;margin:0 auto 16px;font-size:12px}
   <div class="container">
     <div class="sec-head"><span class="eyebrow">Why Vilona</span><h2 class="fm">Built like a hedge fund.<br>Priced like a community tool.</h2><p class="fm">Transparent evidence, no hidden tricks. Free EA to start, Pro EA for real performance.</p></div>
     <div class="bento">
-      <div class="bento-card fm"><div class="icon">📊</div><h3>Verified Backtest</h3><p>Every claim backed by real MT5 Strategy Tester reports + full transaction history CSV.</p></div>
-      <div class="bento-card big fm"><div class="icon">🔓</div><h3>Open-Source Free EA</h3><p>Vilona Basic Gold — simple EMA 20/50 crossover, MQL5 source included. See exactly what runs on your chart. No black boxes.</p></div>
-      <div class="bento-card hot fm"><div class="icon">🏆</div><h3>Pro EA — +$35,729</h3><p>Vilona Systematic v1: PF 1.99, 86 trades, 16.2% max DD, 75.7% CAGR. Real report included.</p></div>
-      <div class="bento-card fm"><div class="icon">🎨</div><h3>Brand HUD + Pet</h3><p>Hedge-fund dashboard + Prabowo pixel-art pet with chat bubbles. Signature look on any chart.</p></div>
-      <div class="bento-card fm"><div class="icon">📦</div><h3>One-Click Install</h3><p>install.bat / install.sh copies everything to MQL5 folder automatically.</p></div>
+      <div class="bento-card fm"><span class="icon">📊</span><h3>Verified Backtest</h3><p>Every claim backed by real MT5 Strategy Tester reports + full transaction history CSV. You can verify every trade.</p></div>
+      <div class="bento-card big fm"><span class="icon">🔓</span><h3>Open-Source Free EA</h3><p>Vilona Basic Gold — simple EMA 20/50 crossover, MQL5 source included. See exactly what runs on your chart. No black boxes, no hidden fees.</p></div>
+      <div class="bento-card hot fm"><span class="icon">🏆</span><h3>Pro EA — +$35,729</h3><p>Vilona Systematic v1: PF 1.99, 86 trades, 16.2% max DD, 75.7% CAGR. Real MT5 Strategy Tester Report included.</p></div>
+      <div class="bento-card fm"><span class="icon">🎨</span><h3>Brand HUD + Pet</h3><p>Hedge-fund dashboard with Prabowo pixel-art pet. The iconic Vilona signature on any chart.</p></div>
+      <div class="bento-card fm"><span class="icon">📦</span><h3>One-Click Install</h3><p>install.bat / install.sh copies everything to your MQL5 folder automatically. Ready in seconds.</p></div>
     </div>
   </div>
 </section>
 
-<section class="section" id="performance" style="background:rgba(17,23,34,.3)">
+<section class="section" id="performance" style="background:rgba(15,20,30,.3)">
   <div class="container">
-    <div class="sec-head"><span class="eyebrow">Performance</span><h2 class="fm">Numbers you can verify</h2><p class="fm">Every figure from real MT5 backtests. Download the full reports.</p></div>
+    <div class="sec-head"><span class="eyebrow">Performance</span><h2 class="fm">Numbers you can verify</h2><p class="fm">Every figure from real MT5 backtests. Download the full reports and verify yourself.</p></div>
     <div class="table-card fm">
       <table>
         <thead><tr><th>Strategy</th><th>Net Profit</th><th>PF</th><th>Max DD</th><th>Trades</th><th></th></tr></thead>
@@ -263,26 +275,26 @@ footer .risk{max-width:640px;margin:0 auto 16px;font-size:12px}
       </table>
     </div>
     <div style="display:flex;gap:16px;justify-content:center;margin-top:32px;flex-wrap:wrap">
-      <a href="pro-sneak-peek/systematic-v1/mt5-strategy-tester-report.html" class="btn btn-ghost fm" data-magnetic>🧪 MT5 Tester Report</a>
-      <a href="pro-sneak-peek/systematic-v1/equity-chart.png" class="btn btn-ghost fm" data-magnetic>📈 Equity Chart</a>
-      <a href="pro-sneak-peek/systematic-v1/transaction-history.csv" class="btn btn-ghost fm" data-magnetic>📋 Transaction CSV</a>
+      <a href="pro-sneak-peek/systematic-v1/mt5-strategy-tester-report.html" class="btn btn-ghost fm">🧪 MT5 Tester Report</a>
+      <a href="pro-sneak-peek/systematic-v1/equity-chart.png" class="btn btn-ghost fm">📈 Equity Chart</a>
+      <a href="pro-sneak-peek/systematic-v1/transaction-history.csv" class="btn btn-ghost fm">📋 Transaction CSV</a>
     </div>
   </div>
 </section>
 
 <section class="section" id="pricing">
   <div class="container">
-    <div class="sec-head"><span class="eyebrow">Pricing</span><h2 class="fm">Start free. Upgrade when ready.</h2><p class="fm">No subscription, no hidden fees. Pay once for the Pro EA or cosmetic bundle.</p></div>
+    <div class="sec-head"><span class="eyebrow">Pricing</span><h2 class="fm">Start free. Upgrade when ready.</h2><p class="fm">No subscriptions, no hidden fees. Pay once for the Pro EA or cosmetic bundle.</p></div>
     <div class="pricing">
       <div class="price-card fm"><div class="plan">Starter</div><div class="amount">$0</div><div class="per">Free forever</div>
         <ul><li>Vilona Basic Gold EA</li><li>MQL5 source code</li><li>Backtest evidence</li><li>Community support</li></ul>
-        <a href="free-ea/vilona_basic_gold.zip" class="btn btn-blue" download data-magnetic>Download Free</a></div>
+        <a href="free-ea/vilona_basic_gold.zip" class="btn btn-primary" download>Download Free</a></div>
       <div class="price-card featured fm"><div class="plan">Cosmetic</div><div class="amount">Rp 50k<span> / $3</span></div><div class="per">One-time · Brand signature</div>
-        <ul><li>Vilona Brand HUD (premium dashboard)</li><li>Prabowo pixel-art pet + chat bubbles</li><li>Entry/exit sound alerts (WAV)</li><li>One-click installer (.bat / .sh)</li><li>Works on ANY chart, any EA</li></ul>
-        <a href="cosmetic-bundle/vilona-cosmetic-bundle.zip" class="btn btn-primary" download data-magnetic>Get Bundle</a></div>
+        <ul><li>Vilona Brand HUD (premium dashboard)</li><li>Prabowo pixel-art pet + chat bubbles</li><li>Entry/exit sound alerts</li><li>One-click installer (.bat / .sh)</li><li>Works on ANY chart, any EA</li></ul>
+        <a href="cosmetic-bundle/vilona-cosmetic-bundle.zip" class="btn btn-primary" download>Get Bundle</a></div>
       <div class="price-card fm"><div class="plan">Pro EA</div><div class="amount">Custom</div><div class="per">Contact for pricing</div>
-        <ul><li>Vilona Systematic v1 — PF 1.99</li><li>Vilona HS v119p — PF 2.94</li><li>Real MT5 reports + transaction history</li><li>Priority support + setup help</li></ul>
-        <a href="#contact" class="btn btn-ghost" data-magnetic>Contact</a></div>
+        <ul><li>Vilona Systematic v1 — PF 1.99</li><li>Vilona HS v119p — PF 2.94</li><li>Real MT5 reports + transaction history</li><li>Priority support + setup assistance</li></ul>
+        <a href="#contact" class="btn btn-ghost">Contact</a></div>
     </div>
   </div>
 </section>
@@ -291,10 +303,10 @@ footer .risk{max-width:640px;margin:0 auto 16px;font-size:12px}
   <div class="container">
     <div class="sec-head"><span class="eyebrow">FAQ</span><h2 class="fm">Questions, answered</h2></div>
     <div class="faq">
-      <div class="faq-item fm"><div class="faq-q">Is the Free EA really free?<span class="chev">▾</span></div><div class="faq-a">Yes — 100% free, forever. MQL5 source included. No trial limits, no watermarks.</div></div>
-      <div class="faq-item fm"><div class="faq-q">Is the backtest data real?<span class="chev">▾</span></div><div class="faq-a">Absolutely. Generated by the official MT5 Strategy Tester. You can download the full transaction history CSV and equity chart to verify every trade.</div></div>
-      <div class="faq-item fm"><div class="faq-q">What's the difference between Free and Pro?<span class="chev">▾</span></div><div class="faq-a">Free EA is a simple EMA crossover (PF 1.15) — good for learning. Pro EAs use advanced multi-layer strategies (PF 1.99–2.94) with verified +$35k–$90k backtests.</div></div>
-      <div class="faq-item fm"><div class="faq-q">How do I install the cosmetic bundle?<span class="chev">▾</span></div><div class="faq-a">Run install.bat (Windows) or install.sh (Linux/Mac). It automatically copies to your MQL5 folder. Then attach Vilona_Brand_HUD.ex5 to any chart.</div></div>
+      <div class="faq-item fm"><div class="faq-q">Is the Free EA really free?<span class="chev">▾</span></div><div class="faq-a">Yes — 100% free, forever. MQL5 source included. No trial limits, no watermarks, no hidden fees.</div></div>
+      <div class="faq-item fm"><div class="faq-q">Is the backtest data real?<span class="chev">▾</span></div><div class="faq-a">Absolutely. Generated by the official MetaTrader 5 Strategy Tester. You can download the full transaction history CSV and equity chart to verify every single trade.</div></div>
+      <div class="faq-item fm"><div class="faq-q">Free vs Pro — what's the difference?<span class="chev">▾</span></div><div class="faq-a">Free EA is a simple EMA crossover (PF 1.15) — great for learning. Pro EAs use advanced multi-layer strategies (PF 1.99–2.94) with verified +$35k–$90k backtests across years of market data.</div></div>
+      <div class="faq-item fm"><div class="faq-q">How to install the cosmetic bundle?<span class="chev">▾</span></div><div class="faq-a">Run install.bat (Windows) or install.sh (Linux/Mac). It automatically copies to your MQL5 folder. Then attach Vilona_Brand_HUD.ex5 to any chart — set InpBrandHUDOnly=true, InpPetEnabled=true.</div></div>
       <div class="faq-item fm"><div class="faq-q">Do you guarantee profits?<span class="chev">▾</span></div><div class="faq-a">No. We're honest: backtest ≠ future results. Markets change. Always test on a demo account first. That's the only responsible answer.</div></div>
     </div>
   </div>
@@ -304,117 +316,121 @@ footer .risk{max-width:640px;margin:0 auto 16px;font-size:12px}
   <div class="container">
     <div class="sec-head"><span class="eyebrow">Contact</span><h2 class="fm">Get the Pro EA</h2><p class="fm">Reach out on Telegram or WhatsApp — we'll help you choose the right strategy.</p></div>
     <div class="contact-grid">
-      <a href="https://t.me/codergaboets" class="contact-card fm"><div class="icon">💬</div><div class="label">Telegram</div><div class="value">@codergaboets</div></a>
-      <a href="https://wa.me/6285732740006" class="contact-card fm"><div class="icon">📱</div><div class="label">WhatsApp</div><div class="value">+6285732740006</div></a>
-      <a href="https://github.com/DIRJEN-BOT/mt5-gold-trading-ea" class="contact-card fm"><div class="icon">🐙</div><div class="label">GitHub</div><div class="value">mt5-gold-trading-ea</div></a>
+      <a href="https://t.me/codergaboets" class="contact-card fm"><span class="icon">💬</span><div class="label">Telegram</div><div class="value">@codergaboets</div></a>
+      <a href="https://wa.me/6285732740006" class="contact-card fm"><span class="icon">📱</span><div class="label">WhatsApp</div><div class="value">+6285732740006</div></a>
+      <a href="https://github.com/DIRJEN-BOT/mt5-gold-trading-ea" class="contact-card fm"><span class="icon">🐙</span><div class="label">GitHub</div><div class="value">mt5-gold-trading-ea</div></a>
     </div>
   </div>
 </section>
 
 <footer><div class="container">
-  <p class="risk">⚠️ Trading forex and CFDs carries a high level of risk and may not be suitable for all investors. Backtest results are historical simulations and do not guarantee future performance. Always test on a demo account before trading with real money.</p>
-  <p>© 2026 Vilona Trading Systems · Built with passion for algorithmic trading</p>
+  <p class="risk">⚠️ Trading forex and CFDs carries a high level of risk. Backtest results are historical simulations and do not guarantee future performance. Always test on a demo account before trading with real money.</p>
+  <p>© 2026 Vilona Trading Systems</p>
 </div></footer>
 
 <script>
-/* ================= FRAMER-MOTION-STYLE ENGINE (vanilla, spring physics) ================= */
-
-// --- 1. Spring physics (Framer Motion feel) ---
-function spring(from, to, onUpdate, {stiffness=180, damping=20, mass=1}={}){
-  let v=0, x=from, last=performance.now();
-  function step(now){
-    const dt=Math.min((now-last)/1000, .05); last=now;
-    const a=(-stiffness*(x-to))/mass - damping*v;
-    v+=a*dt; x+=v*dt;
-    onUpdate(x);
-    if(Math.abs(x-to)>.001 || Math.abs(v)>.001) requestAnimationFrame(step);
-    else onUpdate(to);
-  }
-  requestAnimationFrame(step);
-}
-
-// --- 2. Scroll reveal with stagger (whileInView) ---
-const io=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      // stagger: reveal items with a small delay
-      const siblings=[...e.target.parentElement.children].filter(c=>c.classList.contains('fm')||c.classList.contains('fm-scale'));
-      const idx=siblings.indexOf(e.target);
-      setTimeout(()=>e.target.classList.add('in'), idx*80);
-      io.unobserve(e.target);
-    }
+// ========== PARTICLE SYSTEM ==========
+const c=document.getElementById('particles'),ctx=c.getContext('2d');
+let w,h,particles=[];
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight;resize();}
+resize(); window.addEventListener('resize',resize);
+for(let i=0;i<80;i++)particles.push({x:Math.random()*w,y:Math.random()*h,dx:(Math.random()-.5)*.6,dy:(Math.random()-.5)*.6,sz:Math.random()*2+1,o:Math.random()*.5+.1});
+function animateParticles(){
+  ctx.clearRect(0,0,w,h);
+  particles.forEach(p=>{
+    p.x+=p.dx;p.y+=p.dy;
+    if(p.x<0||p.x>w)p.dx*=-1;if(p.y<0||p.y>h)p.dy*=-1;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.sz,0,Math.PI*2);
+    ctx.fillStyle=`rgba(79,195,247,${p.o})`;ctx.fill();
   });
-},{threshold:.12});
-document.querySelectorAll('.fm, .fm-scale').forEach(el=>io.observe(el));
+  // draw connections
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<150){
+        ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.strokeStyle=`rgba(79,195,247,${.06*(1-dist/150)})`;ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
 
-// hero elements already visible (stagger on load)
-document.querySelectorAll('.hero .fm, .hero .fm-scale').forEach((el,i)=>{
-  el.classList.remove('in'); setTimeout(()=>el.classList.add('in'), i*120);
-});
-
-// --- 3. Magnetic buttons (whileHover with spring) ---
-document.querySelectorAll('[data-magnetic]').forEach(btn=>{
-  btn.addEventListener('mousemove',(e)=>{
+// ========== CURSOR GLOW ==========
+const cursor=document.getElementById('cursor');
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';
+  document.querySelectorAll('[data-magnetic]').forEach(btn=>{
     const r=btn.getBoundingClientRect();
-    const dx=(e.clientX-r.left-r.width/2)*.3, dy=(e.clientY-r.top-r.height/2)*.3;
+    const dx=(e.clientX-r.left-r.width/2)*.3,dy=(e.clientY-r.top-r.height/2)*.3;
     btn.style.transform=`translate(${dx}px,${dy}px) scale(1.03)`;
   });
-  btn.addEventListener('mouseleave',()=>{ btn.style.transform='translate(0,0) scale(1)'; });
 });
 
-// --- 4. 3D tilt on mockup + cards (whileHover rotateX/Y) ---
-const mockup=document.getElementById('mockup');
-mockup.addEventListener('mousemove',(e)=>{
-  const r=mockup.getBoundingClientRect();
-  const rx=((e.clientY-r.top)/r.height-.5)*10, ry=((e.clientX-r.left)/r.width-.5)*10;
-  mockup.style.transform=`perspective(900px) rotateX(${-rx}deg) rotateY(${ry}deg)`;
-});
-mockup.addEventListener('mouseleave',()=>{ spring(0,0,v=>mockup.style.transform=`perspective(900px) rotateX(${v}deg) rotateY(${v}deg)`); });
-document.querySelectorAll('.bento-card, .price-card, .contact-card').forEach(card=>{
-  card.addEventListener('mousemove',(e)=>{
-    const r=card.getBoundingClientRect();
-    const rx=((e.clientY-r.top)/r.height-.5)*6, ry=((e.clientX-r.left)/r.width-.5)*6;
-    card.style.transform=`perspective(800px) rotateX(${-rx}deg) rotateY(${ry}deg) translateY(-4px)`;
-  });
-  card.addEventListener('mouseleave',()=>{ card.style.transform=''; });
-});
+// ========== LIVE TICKER ==========
+let basePrice=2635.42;
+setInterval(()=>{
+  basePrice+=(Math.random()-.5)*4;
+  const chg=((basePrice-2635.42)/2635.42*100);
+  document.getElementById('price').textContent=basePrice.toFixed(2);
+  document.getElementById('price').className='val '+(chg>=0?'g':'r');
+  document.getElementById('change').textContent=(chg>=0?'+':'')+chg.toFixed(2)+'%';
+  document.getElementById('change').className='val '+(chg>=0?'g':'r');
+},2000);
 
-// --- 5. Parallax blobs + pet (mousemove) ---
-const b1=document.getElementById('b1'),b2=document.getElementById('b2'),b3=document.getElementById('b3');
-let mx=0,my=0;
-document.addEventListener('mousemove',(e)=>{
-  mx=(e.clientX/innerWidth-.5)*40; my=(e.clientY/innerHeight-.5)*40;
-  b1.style.transform=`translate(${mx}px,${my}px)`;
-  b2.style.transform=`translate(${-mx*1.4}px,${-my*1.2}px)`;
-  b3.style.transform=`translate(${mx*.8}px,${my*.9}px)`;
-});
+// ========== LIVE HUD ==========
+let eq=12345;
+setInterval(()=>{
+  eq+=Math.round((Math.random()-.4)*20);
+  const day=eq-12000;
+  document.getElementById('eqVal').textContent='$'+eq.toLocaleString();
+  document.getElementById('dayVal').textContent=(day>=0?'+':'')+'$'+Math.abs(day).toLocaleString();
+  document.getElementById('dayVal').style.color=day>=0?'var(--green)':'var(--red)';
+  document.getElementById('pnlVal').textContent=(day>=0?'+':'')+'$'+Math.abs(day).toFixed(2);
+  document.getElementById('pnlVal').style.color=day>=0?'var(--green)':'var(--red)';
+  // random signal flip
+  if(Math.random()<.1){
+    document.getElementById('sigVal').textContent=Math.random()>.5?'BUY ▲':'SELL ▼';
+    document.getElementById('sigVal').style.color=Math.random()>.5?'var(--green)':'var(--red)';
+  }
+},1500);
 
-// --- 6. Animated counters ---
+// ========== SCROLL REVEAL ==========
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.1});
+document.querySelectorAll('.fm, .fm-scale, .fm-left, .fm-right').forEach(el=>io.observe(el));
+
+// ========== COUNTERS ==========
 function animateCount(el){
-  const target=parseFloat(el.dataset.count), dec=parseInt(el.dataset.decimal||0);
-  let start=0; const dur=1600, t0=performance.now();
-  function tick(t){ const p=Math.min((t-t0)/dur,1); const eased=1-Math.pow(1-p,3);
-    const val=start+(target-start)*eased;
-    el.textContent=dec?val.toFixed(dec):Math.round(val).toLocaleString();
+  const target=parseFloat(el.dataset.count),dec=parseInt(el.dataset.decimal||0),start=0,dur=1600,t0=performance.now();
+  function tick(t){const p=Math.min((t-t0)/dur,1),eased=1-Math.pow(1-p,3);
+    el.textContent=dec?(start+(target-start)*eased).toFixed(dec):Math.round(start+(target-start)*eased).toLocaleString();
     if(p<1)requestAnimationFrame(tick);}
   requestAnimationFrame(tick);
 }
-const io2=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){animateCount(e.target);io2.unobserve(e.target);}});},{threshold:.5});
+const io2=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){animateCount(e.target);io2.unobserve(e.target);}});
+},{threshold:.5});
 document.querySelectorAll('.stat .num').forEach(el=>io2.observe(el));
 
-// --- 7. FAQ ---
+// ========== FAQ ==========
 document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
 
-// --- 8. Sparkline (live) ---
+// ========== SPARKLINE ==========
 const spark=document.getElementById('spark');
 for(let i=0;i<60;i++)spark.appendChild(document.createElement('span'));
 setInterval(()=>{document.querySelectorAll('#spark span').forEach((s,i)=>{
-  const v=8+6*Math.sin((Date.now()/300)+i/6)+3*Math.cos((Date.now()/400)+i/5);
-  s.style.height=v+'px'; s.style.background=(i%2)?'var(--green)':'var(--red)';
-});},80);
+  const v=6+8*Math.sin((Date.now()/250)+i/5)+4*Math.cos((Date.now()/350)+i/4);
+  s.style.height=v+'px';s.style.background=i%2?'var(--green)':'var(--red)';
+});},60);
 
-// --- 9. Nav shadow on scroll ---
+// ========== PROGRESS BAR ==========
 window.addEventListener('scroll',()=>{
+  const p=window.scrollY/(document.body.scrollHeight-innerHeight);
+  document.getElementById('progress').style.width=p*100+'%';
   document.getElementById('nav').style.boxShadow=scrollY>20?'0 10px 30px rgba(0,0,0,.4)':'none';
 });
 </script>
