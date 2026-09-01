@@ -14,11 +14,11 @@
 
 | Metric | Value |
 |--------|-------|
-| Net Profit | +$XXX |
-| Profit Factor | X.XX |
-| Max DD | X.X% |
-| Trades | XXX |
-| Win Rate | XX% |
+| Net Profit | +$1,504 |
+| Profit Factor | 1.15 |
+| Max DD | 12.9% |
+| Trades | 346 |
+| Win Rate | 63% |
 
 [⬇ Download Free EA](free-ea/vilona_basic_gold.zip)
 
