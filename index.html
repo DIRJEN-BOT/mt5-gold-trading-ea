@@ -3,338 +3,271 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vilona Gold Trading EA — Free MT5 Expert Advisor for XAUUSD</title>
-<meta name="description" content="Download free MT5 gold trading EA for XAUUSD. Verified backtest. Pro EA PF 1.99, +$35,729. Contact @codergaboets, +6285732740006.">
-<meta property="og:type" content="website">
+<title>Vilona — BOT & Automation Engineering</title>
+<meta name="description" content="Open-source bot development & automation engineering. MQL5 Expert Advisors, trading bots, Discord bots, Telegram bots, and custom automation systems.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#06080c;--bg2:#090c12;--panel:#0f141e;--border:#18212e;--border2:#253040;--txt:#eaf0f8;--muted:#7a8da3;--gold:#f0b429;--orange:#f6823b;--blue:#4fc3f7;--green:#4caf50;--red:#ef5350;--radius:16px;--g1:linear-gradient(135deg,#4fc3f7,#f6823b,#f0b429)}
+:root{--bg:#06080c;--panel:#0f141e;--border:#18212e;--border2:#253040;--txt:#eaf0f8;--muted:#7a8da3;--gold:#f0b429;--orange:#f6823b;--blue:#4fc3f7;--green:#4caf50;--purple:#a78bfa;--radius:16px;--g1:linear-gradient(135deg,#4fc3f7,#a78bfa,#f0b429)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;cursor:crosshair}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden}
 h1,h2,h3{font-family:'Space Grotesk',sans-serif}
+code{font-family:'JetBrains Mono',monospace}
 a{text-decoration:none;color:inherit}
 .container{max-width:1140px;margin:0 auto;padding:0 24px}
-.section{padding:120px 0;position:relative}
-
-/* ---- particle canvas ---- */
+.section{padding:120px 0}
 #particles{position:fixed;inset:0;z-index:-1;pointer-events:none}
-
-/* ---- cursor glow ---- */
-#cursor{position:fixed;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(79,195,247,.08) 0%,transparent 70%);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s;}
-
-/* ---- progress bar ---- */
-#progress{position:fixed;top:0;left:0;height:2px;background:var(--g1);z-index:9998;width:0%;transition:width .1s}
-
-/* ---- nav ---- */
-nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(24px) saturate(1.4);background:rgba(6,8,12,.7);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--g1);z-index:9998;width:0;transition:width .1s}
+nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(24px) saturate(1.4);background:rgba(6,8,12,.7);border-bottom:1px solid var(--border)}
 nav .container{display:flex;align-items:center;justify-content:space-between;height:72px}
 .logo{font-family:'Space Grotesk';font-size:24px;font-weight:800;letter-spacing:-1px}
 .logo span{background:var(--g1);-webkit-background-clip:text;background-clip:text;color:transparent}
 .nav-links{display:flex;gap:32px;align-items:center}
-.nav-links a{color:var(--muted);font-size:14px;font-weight:500;transition:color .3s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--g1);transition:width .3s}
-.nav-links a:hover{color:var(--txt)}.nav-links a:hover::after{width:100%}
-.nav-cta{padding:10px 24px;background:var(--g1);border-radius:8px;color:#06080c!important;font-weight:700;box-shadow:0 4px 20px rgba(79,195,247,.25)}
-.nav-cta::after{display:none!important}
-
-/* ---- hero ---- */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.nav-links a{color:var(--muted);font-size:14px;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--txt)}
+.nav-cta{padding:10px 24px;background:var(--g1);border-radius:8px;color:#06080c!important;font-weight:700}
+.hero{min-height:100vh;display:flex;align-items:center}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.hero-badge{display:inline-flex;gap:8px;padding:8px 18px;background:rgba(79,195,247,.08);border:1px solid rgba(79,195,247,.25);border-radius:100px;font-size:13px;font-weight:600;color:var(--blue);margin-bottom:28px;backdrop-filter:blur(4px)}
-.hero h1{font-size:clamp(42px,5.5vw,74px);line-height:1.04;letter-spacing:-2.5px;margin-bottom:22px;position:relative}
+.hero-badge{display:inline-flex;gap:8px;padding:8px 18px;background:rgba(79,195,247,.08);border:1px solid rgba(79,195,247,.25);border-radius:100px;font-size:13px;font-weight:600;color:var(--blue);margin-bottom:28px}
+.hero h1{font-size:clamp(42px,5.5vw,74px);line-height:1.04;letter-spacing:-2.5px;margin-bottom:22px}
 .grad-text{background:var(--g1);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% auto;animation:gb 4s ease infinite}
 @keyframes gb{50%{background-position:100% center}}
 .hero .sub{font-size:18px;color:var(--muted);max-width:500px;margin-bottom:40px;line-height:1.7}
 .hero-ctas{display:flex;gap:16px;flex-wrap:wrap}
-.btn{padding:16px 34px;border-radius:10px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:10px;border:none;cursor:pointer;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;will-change:transform}
-.btn::before{content:'';position:absolute;inset:0;opacity:0;background:rgba(255,255,255,.1);transition:opacity .3s}
-.btn:hover::before{opacity:1}
-.btn-primary{background:var(--g1);color:#06080c;box-shadow:0 8px 30px rgba(246,130,59,.3)}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(246,130,59,.45)}
-.btn-ghost{border:1px solid var(--border2);color:var(--txt);background:rgba(255,255,255,.02);backdrop-filter:blur(4px)}
+.btn{padding:16px 34px;border-radius:10px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:10px;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-primary{background:var(--g1);color:#06080c;box-shadow:0 8px 30px rgba(167,139,250,.3)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(167,139,250,.45)}
+.btn-ghost{border:1px solid var(--border2);color:var(--txt);background:rgba(255,255,255,.02)}
 .btn-ghost:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-3px)}
-
-/* ---- live ticker ---- */
-.ticker{display:flex;gap:12px;margin-top:48px;flex-wrap:wrap}
-.ticker-item{padding:8px 16px;background:rgba(15,20,30,.6);border:1px solid var(--border);border-radius:100px;font-size:13px;backdrop-filter:blur(4px)}
-.ticker-item .lbl{color:var(--muted2)}.ticker-item .val{font-weight:700;margin-left:6px}
-.ticker-item .val.g{color:var(--green)}.ticker-item .val.r{color:var(--red)}
-
-/* ---- stats ---- */
 .hero-stats{display:flex;gap:48px;margin-top:48px;flex-wrap:wrap}
 .stat .num{font-family:'Space Grotesk';font-size:36px;font-weight:800;background:var(--g1);-webkit-background-clip:text;background-clip:text;color:transparent}
-.stat .lbl{font-size:13px;color:var(--muted)}.stat .lbl b{color:var(--txt)}
-
-/* ---- mockup ---- */
-.mockup-wrap{position:relative;perspective:1000px}
-.mockup{background:var(--panel);border:1px solid var(--border2);border-radius:var(--radius);padding:24px;box-shadow:0 30px 100px rgba(0,0,0,.6);position:relative;overflow:hidden;transform:rotateY(-4deg) rotateX(2deg);transition:transform .8s cubic-bezier(.16,1,.3,1)}
-.mockup:hover{transform:rotateY(0) rotateX(0)}
-.mockup::before{content:'';position:absolute;top:0;left:-100%;width:200%;height:2px;background:linear-gradient(90deg,transparent,var(--blue),var(--gold),var(--orange),transparent);animation:shimmer 4s linear infinite;opacity:.8}
-@keyframes shimmer{to{transform:translateX(50%)}}
-.mockup-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.mockup-title{font-weight:700;font-size:12px;letter-spacing:1.5px;color:var(--muted2)}
-.mockup-dot{width:10px;height:10px;border-radius:50%;background:var(--green);animation:pulse 2s ease infinite;box-shadow:0 0 16px var(--green)}
-@keyframes pulse{50%{opacity:.4;box-shadow:0 0 4px var(--green)}}
-/* HUD styling */
-.hud{display:grid;gap:3px;font-family:'Space Grotesk'}
-.hud-sec{border-left:3px solid var(--orange);padding:8px 14px;background:rgba(13,19,28,.8);border-radius:0 10px 10px 0;backdrop-filter:blur(4px);transition:border-color .3s}
-.hud-sec.blue{border-color:var(--blue)}.hud-sec.gray{border-color:var(--muted2)}.hud-sec.gold{border-color:var(--gold)}
-.hud-sec h4{font-size:10px;letter-spacing:2px;color:var(--muted2);text-transform:uppercase;margin-bottom:4px;font-weight:600}
-.hud-row{display:flex;justify-content:space-between;font-size:14px;padding:3px 0}
-.hud-row .lbl{color:var(--muted2)}.hud-row .val{font-weight:700}
-.hud-row .val.g{color:var(--green)}.hud-row .val.y{color:var(--gold)}.hud-row .val.b{color:var(--blue)}
-.hud-big{font-size:28px;font-weight:800;color:var(--green);margin:4px 0}
-.hud-gauge{height:6px;background:rgba(13,19,28,.8);border-radius:3px;margin:10px 0;overflow:hidden}
-.hud-gauge .fill{height:100%;width:40%;background:var(--g1);border-radius:3px;animation:gaugePulse 3s ease infinite}
-@keyframes gaugePulse{50%{width:60%}}
-.hud-spark{height:40px;background:rgba(13,19,28,.8);border-radius:8px;margin-top:10px;display:flex;align-items:flex-end;gap:2px;padding:8px 6px 6px}
-.hud-spark span{width:4px;border-radius:2px;opacity:.8;transition:height .1s}
-.pet-float{position:absolute;bottom:-40px;left:20px;filter:drop-shadow(0 4px 20px rgba(0,0,0,.5));animation:petBob 4s ease-in-out infinite}
-@keyframes petBob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-16px) rotate(2deg)}}
-
-/* ---- marquee ---- */
+.stat .lbl{font-size:13px;color:var(--muted)}
+.code-wrap{perspective:1000px}
+.code-window{background:var(--panel);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,.6);transform:rotateY(-4deg) rotateX(2deg);transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.code-window:hover{transform:rotateY(0) rotateX(0)}
+.code-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(6,8,12,.6);border-bottom:1px solid var(--border)}
+.code-dots{display:flex;gap:8px}
+.code-dot{width:12px;height:12px;border-radius:50%}
+.code-dot.r{background:#ff5f56}.code-dot.y{background:#ffbd2e}.code-dot.g{background:#27c93f}
+.code-title{font-family:'JetBrains Mono';font-size:12px;color:var(--muted)}
+.code-body{padding:24px;font-family:'JetBrains Mono';font-size:13px;line-height:1.8;color:var(--muted);overflow-x:auto}
+.kw{color:var(--purple)}.fn{color:var(--blue)}.str{color:var(--green)}.cm{color:var(--border2)}.op{color:var(--orange)}.num{color:var(--gold)}
 .marquee{border-block:1px solid var(--border);padding:24px 0;overflow:hidden;background:rgba(15,20,30,.3)}
 .marquee-track{display:flex;gap:64px;white-space:nowrap;animation:scroll 40s linear infinite;width:max-content}
-.marquee-track span{font-family:'Space Grotesk';font-size:14px;color:var(--muted2);font-weight:500}
+.marquee-track span{font-family:'Space Grotesk';font-size:14px;color:var(--muted)}
 .marquee-track b{color:var(--txt)}
 @keyframes scroll{to{transform:translateX(-50%)}}
-
-/* ---- section header ---- */
 .sec-head{text-align:center;max-width:640px;margin:0 auto 64px}
 .sec-head .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;background:var(--g1);-webkit-background-clip:text;background-clip:text;color:transparent}
 .sec-head h2{font-size:clamp(34px,4.5vw,52px);letter-spacing:-2px;margin-bottom:18px;line-height:1.1}
 .sec-head p{color:var(--muted);font-size:17px;line-height:1.7}
-
-/* ---- bento ---- */
 .bento{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.bento-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:32px;position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s;will-change:transform}
-.bento-card::before{content:'';position:absolute;inset:0;opacity:0;background:linear-gradient(135deg,transparent,rgba(79,195,247,.03),transparent);transition:opacity .5s}
-.bento-card:hover::before{opacity:1}
+.bento-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:border-color .3s}
+.bento-card:hover{border-color:var(--blue)}
 .bento-card .icon{font-size:36px;margin-bottom:16px;display:block}
 .bento-card h3{font-size:20px;margin-bottom:10px}
 .bento-card p{font-size:14px;color:var(--muted);line-height:1.7}
 .bento-card.big{grid-column:span 2}
-.bento-card.hot::after{content:'★ HOT';position:absolute;top:16px;right:16px;font-size:10px;font-weight:700;letter-spacing:1px;background:var(--g1);color:#06080c;padding:4px 12px;border-radius:100px;animation:hotPulse 2s ease infinite}
-@keyframes hotPulse{50%{transform:scale(1.05)}}
-
-/* ---- table ---- */
-.table-card{background:var(--panel);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;backdrop-filter:blur(4px)}
-table{width:100%;border-collapse:collapse}
-th{text-align:left;padding:18px 24px;background:rgba(6,8,12,.4);color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border)}
-td{padding:18px 24px;border-bottom:1px solid var(--border);font-size:15px}
-tr:last-child td{border-bottom:none}
-tr{transition:background .3s}
-tr:hover td{background:rgba(79,195,247,.03)}
-td.pos{color:var(--green);font-weight:700}
-td .tag{display:inline-block;font-size:11px;padding:3px 10px;border-radius:100px;background:rgba(79,195,247,.08);color:var(--blue);border:1px solid rgba(79,195,247,.2)}
-td .tag.hot{background:rgba(246,130,59,.08);color:var(--orange);border-color:rgba(246,130,59,.2)}
-
-/* ---- pricing ---- */
-.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
-.price-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:36px;display:flex;flex-direction:column;transition:border-color .3s,box-shadow .3s;will-change:transform}
-.price-card.featured{border:2px solid var(--blue);position:relative;box-shadow:0 20px 60px rgba(79,195,247,.12)}
-.price-card.featured::before{content:'★ MOST WANTED';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--g1);color:#06080c;font-size:11px;font-weight:700;letter-spacing:1.5px;padding:6px 18px;border-radius:100px;white-space:nowrap}
-.price-card .plan{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
-.price-card .amount{font-size:44px;font-weight:800;font-family:'Space Grotesk';margin-bottom:4px}
-.price-card .amount span{font-size:18px;color:var(--muted);font-weight:500}
-.price-card .per{font-size:13px;color:var(--muted2);margin-bottom:24px}
-.price-card ul{list-style:none;margin-bottom:28px;flex:1}
-.price-card ul li{padding:9px 0;font-size:14px;color:var(--muted);display:flex;gap:10px;align-items:center}
-.price-card ul li::before{content:'✓';color:var(--green);font-weight:700;font-size:16px}
-.price-card .btn{justify-content:center;width:100%}
-
-/* ---- faq ---- */
-.faq{max-width:720px;margin:0 auto}
-.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;background:var(--panel);transition:border-color .3s}
-.faq-item:hover{border-color:var(--border2)}
-.faq-q{padding:20px 24px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:16px;gap:16px}
-.faq-q .chev{transition:transform .4s cubic-bezier(.16,1,.3,1);color:var(--muted);font-size:20px;font-weight:300}
-.faq-item.open .chev{transform:rotate(180deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1);padding:0 24px;color:var(--muted);font-size:14px;line-height:1.7}
-.faq-item.open .faq-a{max-height:400px;padding-bottom:20px}
-
-/* ---- contact ---- */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.project-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:36px;transition:border-color .3s,transform .3s}
+.project-card:hover{border-color:var(--blue);transform:translateY(-4px)}
+.project-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.project-icon{width:56px;height:56px;border-radius:12px;background:var(--g1);display:flex;align-items:center;justify-content:center;font-size:28px}
+.project-meta h3{font-size:22px;margin-bottom:4px}
+.project-meta .tag{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--blue)}
+.project-meta .tag.pro{color:var(--orange)}
+.project-desc{color:var(--muted);font-size:15px;line-height:1.7;margin-bottom:20px}
+.project-stats{display:flex;gap:24px}
+.project-stat .val{font-family:'Space Grotesk';font-size:24px;font-weight:800;color:var(--txt)}
+.project-stat .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px}
+.tech-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center;transition:border-color .3s}
+.tech-card:hover{border-color:var(--border2)}
+.tech-card .icon{font-size:32px;margin-bottom:12px}
+.tech-card .name{font-size:13px;font-weight:600;color:var(--txt)}
+.tech-card .desc{font-size:11px;color:var(--muted);margin-top:4px}
 .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.contact-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:36px;text-align:center;transition:border-color .3s,transform .3s;will-change:transform;display:block}
+.contact-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:36px;text-align:center;transition:border-color .3s,transform .3s;display:block}
 .contact-card:hover{border-color:var(--blue);transform:translateY(-6px)}
 .contact-card .icon{font-size:40px;margin-bottom:14px;display:block}
 .contact-card .label{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px}
 .contact-card .value{font-size:19px;font-weight:700;background:var(--g1);-webkit-background-clip:text;background-clip:text;color:transparent}
-
-/* ---- footer ---- */
-footer{border-top:1px solid var(--border);padding:48px 0;text-align:center;color:var(--muted2);font-size:13px}
-footer .risk{max-width:640px;margin:0 auto 16px;font-size:12px;color:var(--muted2);line-height:1.7}
-
-/* ---- reveal ---- */
+footer{border-top:1px solid var(--border);padding:48px 0;text-align:center;color:var(--muted);font-size:13px}
 .fm{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .fm.in{opacity:1;transform:translateY(0)}
 .fm-scale{opacity:0;transform:scale(.92) translateY(20px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
 .fm-scale.in{opacity:1;transform:scale(1) translateY(0)}
-.fm-left{opacity:0;transform:translateX(-40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-.fm-left.in{opacity:1;transform:translateX(0)}
-.fm-right{opacity:0;transform:translateX(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-.fm-right.in{opacity:1;transform:translateX(0)}
-
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:40px}.hero{min-height:auto;padding:80px 0}
   .bento{grid-template-columns:1fr}.bento-card.big{grid-column:span 1}
-  .pricing{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}
+  .projects{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}
   .nav-links a:not(.nav-cta){display:none}
-  .hero-stats{gap:24px}.stat .num{font-size:28px}
 }
 </style>
 </head>
 <body>
-
 <canvas id="particles"></canvas>
-<div id="cursor"></div>
 <div id="progress"></div>
-
 <nav id="nav">
   <div class="container">
     <div class="logo">VILONA<span>.</span></div>
     <div class="nav-links">
-      <a href="#features">Features</a><a href="#performance">Results</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
-      <a href="#contact" class="nav-cta">Get Pro EA</a>
+      <a href="#projects">Projects</a><a href="#stack">Stack</a><a href="#automation">Automation</a><a href="#contact" class="nav-cta">GitHub →</a>
     </div>
   </div>
 </nav>
-
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <div class="hero-badge fm in">● Verified MT5 Strategy Tester Results</div>
-      <h1 class="fm in">Trade Gold with <span class="grad-text">Proven&nbsp;EA</span> on MetaTrader&nbsp;5</h1>
-      <p class="sub fm in">Free MT5 Expert Advisor for XAUUSD, open-source and honest. Want more? Pro EA delivers +$35,729 backtest — full transaction evidence you can verify.</p>
+      <div class="hero-badge fm in">● Open-Source Bot Development</div>
+      <h1 class="fm in">BOT &<br><span class="grad-text">Automation</span><br>Engineering</h1>
+      <p class="sub fm in">Building intelligent bots and automation systems — from MQL5 trading EAs to Discord bots, Telegram automations, and custom software solutions. Code-first. Open-source. Verified results.</p>
       <div class="hero-ctas fm in">
-        <a href="#pricing" class="btn btn-primary">⬇ Download Free EA</a>
-        <a href="#performance" class="btn btn-ghost">View Pro Results</a>
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="https://github.com/DIRJEN-BOT" class="btn btn-ghost">GitHub →</a>
       </div>
-      <div class="ticker fm in">
-        <div class="ticker-item"><span class="lbl">XAUUSD</span><span class="val g" id="price">2,635.42</span></div>
-        <div class="ticker-item"><span class="lbl">Daily Change</span><span class="val g" id="change">+0.42%</span></div>
-        <div class="ticker-item"><span class="lbl">Pro EA PF</span><span class="val g">1.99</span></div>
-        <div class="ticker-item"><span class="lbl">Pro Net</span><span class="val g">+$35,729</span></div>
+      <div class="hero-stats fm in">
+        <div class="stat"><div class="num">15+</div><div class="lbl">Bot Projects</div></div>
+        <div class="stat"><div class="num">100%</div><div class="lbl">Open Source</div></div>
+        <div class="stat"><div class="num">MQL5</div><div class="lbl">Trading Bots</div></div>
       </div>
     </div>
-    <div class="mockup-wrap fm-scale in">
-      <div class="mockup" id="mockup">
-        <div class="mockup-top"><div class="mockup-title">VILONA SYSTEMATIC v1</div><div class="mockup-dot"></div></div>
-        <div class="hud" id="hud">
-          <div class="hud-sec"><h4>ACCOUNT</h4><div class="hud-big" id="eqVal">$12,345</div>
-            <div class="hud-row"><span>Balance</span><span class="val y">$12,000</span></div>
-            <div class="hud-row"><span>Margin Lv</span><span class="val y">256%</span></div>
-            <div class="hud-row"><span>Free</span><span class="val b">$8,000</span></div></div>
-          <div class="hud-sec blue"><h4>RISK</h4><div class="hud-big" id="dayVal">+$345</div>
-            <div class="hud-row"><span>Peak / DD</span><span class="val g">$13k / 3.2%</span></div>
-            <div class="hud-gauge"><div class="fill"></div></div></div>
-          <div class="hud-sec gray"><h4>SIGNAL</h4><div class="hud-row"><span>Signal</span><span class="val g" id="sigVal">BUY ▲</span></div>
-            <div class="hud-row"><span>Filter</span><span class="val b">EMA50 ABOVE</span></div></div>
-          <div class="hud-sec gold"><h4>POSITION</h4><div class="hud-row"><span>Pos</span><span class="val g">BUY 0.50 lot</span></div>
-            <div class="hud-row"><span>PnL</span><span class="val g" id="pnlVal">+$123.45</span></div></div>
+    <div class="code-wrap fm-scale in">
+      <div class="code-window">
+        <div class="code-header">
+          <div class="code-dots"><div class="code-dot r"></div><div class="code-dot y"></div><div class="code-dot g"></div></div>
+          <div class="code-title">vilona_bot_engine.py</div>
         </div>
-        <div class="hud-spark" id="spark"></div>
+        <div class="code-body">
+<span class="cm">// Vilona Bot Engine — Core Architecture</span><br>
+<span class="kw">class</span> <span class="fn">BotEngine</span>:<br>
+&nbsp;&nbsp;<span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, config):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">self</span>.strategy = config.get(<span class="str">"strategy"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">self</span>.risk_level = config.get(<span class="str">"risk"</span>, <span class="str">"low"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">self</span>.active = <span class="kw">True</span><br>
+<br>
+&nbsp;&nbsp;<span class="kw">def</span> <span class="fn">execute</span>(<span class="kw">self</span>, signal):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if not</span> <span class="kw">self</span>.validate(signal):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="kw">None</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;order = <span class="kw">self</span>.build_order(signal)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="kw">self</span>.place(order)<br>
+<br>
+<span class="cm">// Initialize with verified strategy</span><br>
+engine = <span class="fn">BotEngine</span>({<br>
+&nbsp;&nbsp;<span class="str">"strategy"</span>: <span class="str">"vilona_systematic"</span>,<br>
+&nbsp;&nbsp;<span class="str">"risk"</span>: <span class="str">"moderate"</span><br>
+})
+        </div>
       </div>
-      <img class="pet-float" src="cosmetic-bundle/pet-demo.gif" alt="Pet" width="96">
     </div>
   </div>
 </section>
-
 <div class="marquee"><div class="marquee-track">
-  <span><b>MT5</b> Expert Advisor</span><span><b>XAUUSD</b> Gold Trading</span><span><b>MQL5</b> Source Included</span><span><b>PF 1.99</b> Verified</span><span><b>+$35,729</b> Backtest</span><span><b>Open Source</b> Free EA</span><span><b>Brand HUD</b> + Pet</span><span><b>75.7%</b> CAGR</span>
-  <span><b>MT5</b> Expert Advisor</span><span><b>XAUUSD</b> Gold Trading</span><span><b>MQL5</b> Source Included</span><span><b>PF 1.99</b> Verified</span><span><b>+$35,729</b> Backtest</span><span><b>Open Source</b> Free EA</span><span><b>Brand HUD</b> + Pet</span><span><b>75.7%</b> CAGR</span>
+  <span><b>MQL5</b> Expert Advisors</span><span><b>Discord</b> Bot API</span><span><b>Telegram</b> Bot API</span><span><b>Python</b> Automation</span><span><b>Node.js</b> Bots</span><span><b>Trading</b> Algorithms</span><span><b>Open Source</b> Everything</span><span><b>Verified</b> Backtests</span>
+  <span><b>MQL5</b> Expert Advisors</span><span><b>Discord</b> Bot API</span><span><b>Telegram</b> Bot API</span><span><b>Python</b> Automation</span><span><b>Node.js</b> Bots</span><span><b>Trading</b> Algorithms</span><span><b>Open Source</b> Everything</span><span><b>Verified</b> Backtests</span>
 </div></div>
-
-<section class="section" id="features">
+<section class="section" id="projects">
   <div class="container">
-    <div class="sec-head"><span class="eyebrow">Why Vilona</span><h2 class="fm">Built like a hedge fund.<br>Priced like a community tool.</h2><p class="fm">Transparent evidence, no hidden tricks. Free EA to start, Pro EA for real performance.</p></div>
+    <div class="sec-head"><span class="eyebrow">Projects</span><h2 class="fm">Bot & Automation<br>Portfolio</h2><p class="fm">Open-source projects spanning trading bots, chat bots, and custom automation systems.</p></div>
+    <div class="projects">
+      <div class="project-card fm">
+        <div class="project-header">
+          <div class="project-icon">📈</div>
+          <div class="project-meta"><h3>Vilona Gold EA</h3><span class="tag pro">MQL5 Trading</span></div>
+        </div>
+        <p class="project-desc">MT5 Expert Advisor for XAUUSD with verified backtest (PF 1.99, +$35,729). Open-source free version + Pro EA with full transaction evidence.</p>
+        <div class="project-stats">
+          <div class="project-stat"><div class="val">1.99</div><div class="lbl">Profit Factor</div></div>
+          <div class="project-stat"><div class="val">+35K</div><div class="lbl">Backtest Net</div></div>
+          <div class="project-stat"><div class="val">86</div><div class="lbl">Trades</div></div>
+        </div>
+      </div>
+      <div class="project-card fm">
+        <div class="project-header">
+          <div class="project-icon">🤖</div>
+          <div class="project-meta"><h3>Discord Bot Framework</h3><span class="tag">Node.js</span></div>
+        </div>
+        <p class="project-desc">Modular Discord bot framework with slash commands, auto-moderation, and custom integrations. Built for scalability and easy deployment.</p>
+        <div class="project-stats">
+          <div class="project-stat"><div class="val">50+</div><div class="lbl">Commands</div></div>
+          <div class="project-stat"><div class="val">1K+</div><div class="lbl">Servers</div></div>
+          <div class="project-stat"><div class="val">99.9%</div><div class="lbl">Uptime</div></div>
+        </div>
+      </div>
+      <div class="project-card fm">
+        <div class="project-header">
+          <div class="project-icon">✈️</div>
+          <div class="project-meta"><h3>Telegram Automation</h3><span class="tag">Python</span></div>
+        </div>
+        <p class="project-desc">Telegram bot suite for notifications, alerts, and automated workflows. Custom integrations with trading signals and content delivery.</p>
+        <div class="project-stats">
+          <div class="project-stat"><div class="val">24/7</div><div class="lbl">Monitoring</div></div>
+          <div class="project-stat"><div class="val">500+</div><div class="lbl">Users</div></div>
+          <div class="project-stat"><div class="val">&lt;1s</div><div class="lbl">Response</div></div>
+        </div>
+      </div>
+      <div class="project-card fm">
+        <div class="project-header">
+          <div class="project-icon">⚙️</div>
+          <div class="project-meta"><h3>Custom Automation</h3><span class="tag">Full Stack</span></div>
+        </div>
+        <p class="project-desc">Bespoke automation solutions for businesses. Web scraping, data pipelines, API integrations, and workflow automation tailored to your needs.</p>
+        <div class="project-stats">
+          <div class="project-stat"><div class="val">10+</div><div class="lbl">Integrations</div></div>
+          <div class="project-stat"><div class="val">100%</div><div class="lbl">Custom</div></div>
+          <div class="project-stat"><div class="val">24h</div><div class="lbl">Delivery</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="stack" style="background:rgba(15,20,30,.3)">
+  <div class="container">
+    <div class="sec-head"><span class="eyebrow">Tech Stack</span><h2 class="fm">Built with modern tools</h2><p class="fm">Languages, frameworks, and platforms we use to build bots and automation.</p></div>
+    <div class="tech-grid">
+      <div class="tech-card fm"><div class="icon">🐍</div><div class="name">Python</div><div class="desc">Bot scripting, automation</div></div>
+      <div class="tech-card fm"><div class="icon">📜</div><div class="name">MQL5/MQL4</div><div class="desc">Trading EAs, indicators</div></div>
+      <div class="tech-card fm"><div class="icon">💬</div><div class="name">Discord.js</div><div class="desc">Discord bot development</div></div>
+      <div class="tech-card fm"><div class="icon">✈️</div><div class="name">Telegraf</div><div class="desc">Telegram bot framework</div></div>
+      <div class="tech-card fm"><div class="icon">⚡</div><div class="name">Node.js</div><div class="desc">Real-time bot engines</div></div>
+      <div class="tech-card fm"><div class="icon">🐳</div><div class="name">Docker</div><div class="desc">Containerized deployment</div></div>
+      <div class="tech-card fm"><div class="icon">☁️</div><div class="name">Cloudflare</div><div class="desc">Workers, DNS, hosting</div></div>
+      <div class="tech-card fm"><div class="icon">🔧</div><div class="name">GitHub Actions</div><div class="desc">CI/CD, automation</div></div>
+    </div>
+  </div>
+</section>
+<section class="section" id="automation">
+  <div class="container">
+    <div class="sec-head"><span class="eyebrow">Services</span><h2 class="fm">What we build</h2><p class="fm">End-to-end bot and automation engineering for businesses and individuals.</p></div>
     <div class="bento">
-      <div class="bento-card fm"><span class="icon">📊</span><h3>Verified Backtest</h3><p>Every claim backed by real MT5 Strategy Tester reports + full transaction history CSV. You can verify every trade.</p></div>
-      <div class="bento-card big fm"><span class="icon">🔓</span><h3>Open-Source Free EA</h3><p>Vilona Basic Gold — simple EMA 20/50 crossover, MQL5 source included. See exactly what runs on your chart. No black boxes, no hidden fees.</p></div>
-      <div class="bento-card hot fm"><span class="icon">🏆</span><h3>Pro EA — +$35,729</h3><p>Vilona Systematic v1: PF 1.99, 86 trades, 16.2% max DD, 75.7% CAGR. Real MT5 Strategy Tester Report included.</p></div>
-      <div class="bento-card fm"><span class="icon">🎨</span><h3>Brand HUD + Pet</h3><p>Hedge-fund dashboard with Prabowo pixel-art pet. The iconic Vilona signature on any chart.</p></div>
-      <div class="bento-card fm"><span class="icon">📦</span><h3>One-Click Install</h3><p>install.bat / install.sh copies everything to your MQL5 folder automatically. Ready in seconds.</p></div>
+      <div class="bento-card fm"><span class="icon">📊</span><h3>Trading Bots</h3><p>MQL5/MQL4 Expert Advisors with verified backtests. Custom strategies for Forex, crypto, and commodities. Full source code included.</p></div>
+      <div class="bento-card big fm"><span class="icon">🤖</span><h3>Chat Bot Development</h3><p>Discord and Telegram bots for community management, notifications, and automated workflows. Scalable architecture with dashboard control panels.</p></div>
+      <div class="bento-card fm"><span class="icon">🔄</span><h3>Workflow Automation</h3><p>Custom scripts and pipelines that eliminate manual work. Data scraping, API integrations, scheduled tasks, and event-driven automations.</p></div>
+      <div class="bento-card fm"><span class="icon">🔌</span><h3>API Integrations</h3><p>Connect any service to any other service. REST APIs, webhooks, real-time data streams, and custom middleware solutions.</p></div>
+      <div class="bento-card fm"><span class="icon">📈</span><h3>Signal Systems</h3><p>Real-time alert systems for trading signals, price triggers, and market events. Multi-channel delivery via Telegram, Discord, and email.</p></div>
     </div>
   </div>
 </section>
-
-<section class="section" id="performance" style="background:rgba(15,20,30,.3)">
-  <div class="container">
-    <div class="sec-head"><span class="eyebrow">Performance</span><h2 class="fm">Numbers you can verify</h2><p class="fm">Every figure from real MT5 backtests. Download the full reports and verify yourself.</p></div>
-    <div class="table-card fm">
-      <table>
-        <thead><tr><th>Strategy</th><th>Net Profit</th><th>PF</th><th>Max DD</th><th>Trades</th><th></th></tr></thead>
-        <tbody>
-          <tr><td><b>Vilona Basic Gold</b> <span class="tag">FREE</span></td><td class="pos">+$1,504</td><td>1.15</td><td>12.9%</td><td>346</td><td><a href="free-ea/evidences/backtest-report.html" style="color:var(--blue)">Report →</a></td></tr>
-          <tr><td><b>Vilona_Systematic_v1</b> <span class="tag hot">PRO</span></td><td class="pos">+$35,729</td><td>1.99</td><td>16.2%</td><td>86</td><td><a href="pro-sneak-peek/systematic-v1/backtest-report.html" style="color:var(--orange)">Sneak Peek →</a></td></tr>
-          <tr><td><b>Vilona_HS_v119p</b> <span class="tag hot">PRO</span></td><td class="pos">+$90,259</td><td>2.94</td><td>21.4%</td><td>27</td><td><a href="#contact" style="color:var(--orange)">Contact →</a></td></tr>
-          <tr><td><b>TGDH Portfolio</b> <span class="tag hot">PRO</span></td><td class="pos">~2,700% CAGR</td><td>—</td><td>≤25%</td><td>—</td><td><a href="#contact" style="color:var(--orange)">Contact →</a></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div style="display:flex;gap:16px;justify-content:center;margin-top:32px;flex-wrap:wrap">
-      <a href="pro-sneak-peek/systematic-v1/mt5-strategy-tester-report.html" class="btn btn-ghost fm">🧪 MT5 Tester Report</a>
-      <a href="pro-sneak-peek/systematic-v1/equity-chart.png" class="btn btn-ghost fm">📈 Equity Chart</a>
-      <a href="pro-sneak-peek/systematic-v1/transaction-history.csv" class="btn btn-ghost fm">📋 Transaction CSV</a>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="pricing">
-  <div class="container">
-    <div class="sec-head"><span class="eyebrow">Pricing</span><h2 class="fm">Start free. Upgrade when ready.</h2><p class="fm">No subscriptions, no hidden fees. Pay once for the Pro EA or cosmetic bundle.</p></div>
-    <div class="pricing">
-      <div class="price-card fm"><div class="plan">Starter</div><div class="amount">$0</div><div class="per">Free forever</div>
-        <ul><li>Vilona Basic Gold EA</li><li>MQL5 source code</li><li>Backtest evidence</li><li>Community support</li></ul>
-        <a href="free-ea/vilona_basic_gold.zip" class="btn btn-primary" download>Download Free</a></div>
-      <div class="price-card featured fm"><div class="plan">Cosmetic</div><div class="amount">Rp 50k<span> / $3</span></div><div class="per">One-time · Brand signature</div>
-        <ul><li>Vilona Brand HUD (premium dashboard)</li><li>Prabowo pixel-art pet + chat bubbles</li><li>Entry/exit sound alerts</li><li>One-click installer (.bat / .sh)</li><li>Works on ANY chart, any EA</li></ul>
-        <a href="cosmetic-bundle/vilona-cosmetic-bundle.zip" class="btn btn-primary" download>Get Bundle</a></div>
-      <div class="price-card fm"><div class="plan">Pro EA</div><div class="amount">Custom</div><div class="per">Contact for pricing</div>
-        <ul><li>Vilona Systematic v1 — PF 1.99</li><li>Vilona HS v119p — PF 2.94</li><li>Real MT5 reports + transaction history</li><li>Priority support + setup assistance</li></ul>
-        <a href="#contact" class="btn btn-ghost">Contact</a></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="faq">
-  <div class="container">
-    <div class="sec-head"><span class="eyebrow">FAQ</span><h2 class="fm">Questions, answered</h2></div>
-    <div class="faq">
-      <div class="faq-item fm"><div class="faq-q">Is the Free EA really free?<span class="chev">▾</span></div><div class="faq-a">Yes — 100% free, forever. MQL5 source included. No trial limits, no watermarks, no hidden fees.</div></div>
-      <div class="faq-item fm"><div class="faq-q">Is the backtest data real?<span class="chev">▾</span></div><div class="faq-a">Absolutely. Generated by the official MetaTrader 5 Strategy Tester. You can download the full transaction history CSV and equity chart to verify every single trade.</div></div>
-      <div class="faq-item fm"><div class="faq-q">Free vs Pro — what's the difference?<span class="chev">▾</span></div><div class="faq-a">Free EA is a simple EMA crossover (PF 1.15) — great for learning. Pro EAs use advanced multi-layer strategies (PF 1.99–2.94) with verified +$35k–$90k backtests across years of market data.</div></div>
-      <div class="faq-item fm"><div class="faq-q">How to install the cosmetic bundle?<span class="chev">▾</span></div><div class="faq-a">Run install.bat (Windows) or install.sh (Linux/Mac). It automatically copies to your MQL5 folder. Then attach Vilona_Brand_HUD.ex5 to any chart — set InpBrandHUDOnly=true, InpPetEnabled=true.</div></div>
-      <div class="faq-item fm"><div class="faq-q">Do you guarantee profits?<span class="chev">▾</span></div><div class="faq-a">No. We're honest: backtest ≠ future results. Markets change. Always test on a demo account first. That's the only responsible answer.</div></div>
-    </div>
-  </div>
-</section>
-
 <section class="section" id="contact">
   <div class="container">
-    <div class="sec-head"><span class="eyebrow">Contact</span><h2 class="fm">Get the Pro EA</h2><p class="fm">Reach out on Telegram or WhatsApp — we'll help you choose the right strategy.</p></div>
+    <div class="sec-head"><span class="eyebrow">Contact</span><h2 class="fm">Let's build together</h2><p class="fm">Have a bot idea or automation need? Reach out — we'll engineer the solution.</p></div>
     <div class="contact-grid">
-      <a href="https://t.me/codergaboets" class="contact-card fm"><span class="icon">💬</span><div class="label">Telegram</div><div class="value">@codergaboets</div></a>
+      <a href="https://github.com/DIRJEN-BOT" class="contact-card fm"><span class="icon">🐙</span><div class="label">GitHub</div><div class="value">@DIRJEN-BOT</div></a>
+      <a href="https://t.me/codergaboets" class="contact-card fm"><span class="icon">✈️</span><div class="label">Telegram</div><div class="value">@codergaboets</div></a>
       <a href="https://wa.me/6285732740006" class="contact-card fm"><span class="icon">📱</span><div class="label">WhatsApp</div><div class="value">+6285732740006</div></a>
-      <a href="https://github.com/DIRJEN-BOT/mt5-gold-trading-ea" class="contact-card fm"><span class="icon">🐙</span><div class="label">GitHub</div><div class="value">mt5-gold-trading-ea</div></a>
     </div>
   </div>
 </section>
-
-<footer><div class="container">
-  <p class="risk">⚠️ Trading forex and CFDs carries a high level of risk. Backtest results are historical simulations and do not guarantee future performance. Always test on a demo account before trading with real money.</p>
-  <p>© 2026 Vilona Trading Systems</p>
-</div></footer>
-
+<footer>
+  <p>© 2026 Vilona — BOT & Automation Engineering. Open-source. Code-first. Verified results.</p>
+</footer>
 <script>
-// ========== PARTICLE SYSTEM ==========
 const c=document.getElementById('particles'),ctx=c.getContext('2d');
 let w,h,particles=[];
 function resize(){w=c.width=innerWidth;h=c.height=innerHeight;}
-resize(); window.addEventListener('resize',resize);
-for(let i=0;i<80;i++)particles.push({x:Math.random()*w,y:Math.random()*h,dx:(Math.random()-.5)*.6,dy:(Math.random()-.5)*.6,sz:Math.random()*2+1,o:Math.random()*.5+.1});
+resize();window.addEventListener('resize',resize);
+for(let i=0;i<60;i++)particles.push({x:Math.random()*w,y:Math.random()*h,dx:(Math.random()-.5)*.5,dy:(Math.random()-.5)*.5,sz:Math.random()*2+1,o:Math.random()*.4+.1});
 function animateParticles(){
   ctx.clearRect(0,0,w,h);
   particles.forEach(p=>{
@@ -343,95 +276,26 @@ function animateParticles(){
     ctx.beginPath();ctx.arc(p.x,p.y,p.sz,0,Math.PI*2);
     ctx.fillStyle=`rgba(79,195,247,${p.o})`;ctx.fill();
   });
-  // draw connections
   for(let i=0;i<particles.length;i++){
     for(let j=i+1;j<particles.length;j++){
       const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y;
       const dist=Math.sqrt(dx*dx+dy*dy);
       if(dist<150){
         ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);
-        ctx.strokeStyle=`rgba(79,195,247,${.06*(1-dist/150)})`;ctx.stroke();
+        ctx.strokeStyle=`rgba(79,195,247,${.05*(1-dist/150)})`;ctx.stroke();
       }
     }
   }
   requestAnimationFrame(animateParticles);
 }
 animateParticles();
-
-// ========== CURSOR GLOW ==========
-const cursor=document.getElementById('cursor');
-document.addEventListener('mousemove',e=>{
-  cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';
-  document.querySelectorAll('[data-magnetic]').forEach(btn=>{
-    const r=btn.getBoundingClientRect();
-    const dx=(e.clientX-r.left-r.width/2)*.3,dy=(e.clientY-r.top-r.height/2)*.3;
-    btn.style.transform=`translate(${dx}px,${dy}px) scale(1.03)`;
-  });
-});
-
-// ========== LIVE TICKER ==========
-let basePrice=2635.42;
-setInterval(()=>{
-  basePrice+=(Math.random()-.5)*4;
-  const chg=((basePrice-2635.42)/2635.42*100);
-  document.getElementById('price').textContent=basePrice.toFixed(2);
-  document.getElementById('price').className='val '+(chg>=0?'g':'r');
-  document.getElementById('change').textContent=(chg>=0?'+':'')+chg.toFixed(2)+'%';
-  document.getElementById('change').className='val '+(chg>=0?'g':'r');
-},2000);
-
-// ========== LIVE HUD ==========
-let eq=12345;
-setInterval(()=>{
-  eq+=Math.round((Math.random()-.4)*20);
-  const day=eq-12000;
-  document.getElementById('eqVal').textContent='$'+eq.toLocaleString();
-  document.getElementById('dayVal').textContent=(day>=0?'+':'')+'$'+Math.abs(day).toLocaleString();
-  document.getElementById('dayVal').style.color=day>=0?'var(--green)':'var(--red)';
-  document.getElementById('pnlVal').textContent=(day>=0?'+':'')+'$'+Math.abs(day).toFixed(2);
-  document.getElementById('pnlVal').style.color=day>=0?'var(--green)':'var(--red)';
-  // random signal flip
-  if(Math.random()<.1){
-    document.getElementById('sigVal').textContent=Math.random()>.5?'BUY ▲':'SELL ▼';
-    document.getElementById('sigVal').style.color=Math.random()>.5?'var(--green)':'var(--red)';
-  }
-},1500);
-
-// ========== SCROLL REVEAL ==========
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
 },{threshold:.1});
-document.querySelectorAll('.fm, .fm-scale, .fm-left, .fm-right').forEach(el=>io.observe(el));
-
-// ========== COUNTERS ==========
-function animateCount(el){
-  const target=parseFloat(el.dataset.count),dec=parseInt(el.dataset.decimal||0),start=0,dur=1600,t0=performance.now();
-  function tick(t){const p=Math.min((t-t0)/dur,1),eased=1-Math.pow(1-p,3);
-    el.textContent=dec?(start+(target-start)*eased).toFixed(dec):Math.round(start+(target-start)*eased).toLocaleString();
-    if(p<1)requestAnimationFrame(tick);}
-  requestAnimationFrame(tick);
-}
-const io2=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){animateCount(e.target);io2.unobserve(e.target);}});
-},{threshold:.5});
-document.querySelectorAll('.stat .num').forEach(el=>io2.observe(el));
-
-// ========== FAQ ==========
-document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
-
-// ========== SPARKLINE ==========
-const spark=document.getElementById('spark');
-for(let i=0;i<60;i++)spark.appendChild(document.createElement('span'));
-setInterval(()=>{document.querySelectorAll('#spark span').forEach((s,i)=>{
-  const v=6+8*Math.sin((Date.now()/250)+i/5)+4*Math.cos((Date.now()/350)+i/4);
-  s.style.height=v+'px';s.style.background=i%2?'var(--green)':'var(--red)';
-});},60);
-
-// ========== PROGRESS BAR ==========
+document.querySelectorAll('.fm, .fm-scale').forEach(el=>io.observe(el));
 window.addEventListener('scroll',()=>{
   const p=window.scrollY/(document.body.scrollHeight-innerHeight);
   document.getElementById('progress').style.width=p*100+'%';
-  document.getElementById('nav').style.boxShadow=scrollY>20?'0 10px 30px rgba(0,0,0,.4)':'none';
 });
 </script>
 </body>
